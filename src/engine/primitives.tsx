@@ -91,6 +91,7 @@ export function TitleSlide({
   eyebrow,
   title,
   subtitle,
+  speakerPhoto,
   speakerName,
   speakerRole,
   speakerLinks,
@@ -100,6 +101,7 @@ export function TitleSlide({
   eyebrow?: string
   title: string
   subtitle?: string
+  speakerPhoto?: string
   speakerName?: string
   speakerRole?: ReactNode
   speakerLinks?: ReactNode
@@ -117,8 +119,15 @@ export function TitleSlide({
           {subtitle && <div className="text-[14px] text-[#6b7280] font-light">{subtitle}</div>}
         </div>
 
-        {(speakerName || speakerRole || speakerLinks) && (
-          <div className="flex flex-col justify-center gap-3" style={{ minWidth: 220 }}>
+        {(speakerPhoto || speakerName || speakerRole || speakerLinks) && (
+          <div className="flex flex-col items-start justify-center gap-3" style={{ minWidth: 220 }}>
+            {speakerPhoto && (
+              <img
+                src={speakerPhoto}
+                alt={speakerName ?? 'Speaker'}
+                className="w-32 h-32 rounded-xl object-cover border border-[#e5e7eb]"
+              />
+            )}
             {speakerName && (
               <div className="text-[22px] font-semibold text-[#111827] leading-tight">{speakerName}</div>
             )}

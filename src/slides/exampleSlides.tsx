@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { SlideDef, SlideProps } from '../engine/types'
 import { Code, ContentSlide, SectionSlide, TitleSlide, kw, st, cm, hl, ok } from '../engine/primitives'
+import speakerPhoto from '../assets/speaker.png'
 
 const FOOTER = 'Build AI Agents · 2026'
 
@@ -79,6 +80,7 @@ function Slide01Title({ slideNumber }: SlideProps) {
       eyebrow="Workshop · 2026"
       title="Build AI Agents from Scratch"
       subtitle="Google ADK · ~2h 45min"
+      speakerPhoto={speakerPhoto}
       speakerName="Andrei Tazetdinov"
       speakerRole="Dynatrace"
       slideNumber={slideNumber}
