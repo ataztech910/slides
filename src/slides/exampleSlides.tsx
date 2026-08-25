@@ -78,7 +78,7 @@ function Slide01Title({ slideNumber }: SlideProps) {
     <TitleSlide
       eyebrow="Workshop · 2026"
       title="Build AI Agents from Scratch"
-      subtitle="Google ADK · n8n · ~2h 45min"
+      subtitle="Google ADK · ~2h 45min"
       speakerName="Andrei Tazetdinov"
       speakerRole="Dynatrace"
       slideNumber={slideNumber}
