@@ -311,6 +311,60 @@ function Slide05Plan({ slideNumber }: SlideProps) {
   )
 }
 
+function Slide05bPickModel({ slideNumber }: SlideProps) {
+  return (
+    <ContentSlide eyebrow="Intro · Setup" title="Connecting a model — one line to switch" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex gap-6 h-full items-start pt-1">
+        <div className="flex-1 flex flex-col gap-4">
+          <div className="text-[12px] text-white/40 uppercase tracking-widest">Every agent in this workshop uses pickModel()</div>
+          <Code compact>
+            {kw('function')} pickModel() {'{'}{'\n'}
+            {'  '}{kw('return')} {st('"gemini-2.0-flash"')};{'\n'}
+            {'  '}{cm('// return new KitanaLlm({ model: "auto" }); // ← Kitana')}{'\n'}
+            {'}'}
+          </Code>
+          <div className="text-[12px] text-white/30 leading-5">
+            Uncomment one line to switch provider. Nothing else changes.
+          </div>
+          <div className="w-full h-px bg-white/10" />
+          <div className="flex flex-col gap-2">
+            <div className="flex items-start gap-3 bg-white/[0.03] rounded-lg px-4 py-3">
+              <span className="text-[#fbbf24] font-mono text-[13px] shrink-0 w-24">Gemini</span>
+              <div className="text-[13px] text-white/55 font-light leading-5">
+                Default. Needs <span className="text-white/80 font-mono">GOOGLE_GENAI_API_KEY</span> in <span className="font-mono text-white/80">.env</span>.<br />
+                Copy from <span className="font-mono text-white/80">.env.example</span> and paste your key.
+              </div>
+            </div>
+            <div className="flex items-start gap-3 bg-white/[0.03] rounded-lg px-4 py-3">
+              <span className="text-[#00c4b4] font-mono text-[13px] shrink-0 w-24">Kitana</span>
+              <div className="text-[13px] text-white/55 font-light leading-5">
+                No API key. Uses your Claude CLI subscription or local Ollama.<br />
+                Swap the return line — same code, different provider.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 flex flex-col gap-4 justify-center">
+          <div className="text-[12px] text-white/40 uppercase tracking-widest">Kitana under the hood</div>
+          <Code compact>
+            {cm('# Claude CLI (subscription, no key):')}{'\n'}
+            {kw('new')} {hl('KitanaLlm')}({'{'} model: {st('"auto"')} {'}'}){'\n\n'}
+            {cm('# Ollama (local model):')}{'\n'}
+            {kw('new')} {hl('KitanaLlm')}({'{'}{'\n'}
+            {'  '}model: {st('"auto"')},{'\n'}
+            {'  '}models: {'{'} ollama: {st('"llama3.2"')} {'}'}{'\n'}
+            {'}'})
+          </Code>
+          <div className="text-[12px] text-white/30 leading-5">
+            Same <span className="font-mono text-[#00c4b4]">BaseLlm</span> interface ADK expects —
+            Gemini, Kitana, or anything else plugs in identically.
+          </div>
+        </div>
+      </div>
+    </ContentSlide>
+  )
+}
+
 // ─── BLOCK 1 ─────────────────────────────────────────────────────────────────
 
 function Slide06Block1Section({ slideNumber }: SlideProps) {
@@ -944,7 +998,8 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
   { Component: Slide03AgentLoop },
   { Component: Slide04WhyAdk },
   { Component: Slide05Plan },
-  // Block 1 (5–10)
+  { Component: Slide05bPickModel },
+  // Block 1 (6–11)
   { Component: Slide06Block1Section },
   { Component: Slide07Recipe },
   { Component: Slide08InstructionContract },
@@ -981,6 +1036,7 @@ export const EXAMPLE_CUE_POINTS_SEC = [
   150,   // 03 Agent loop
   330,   // 04 Why ADK
   480,   // 05 Plan
+  540,   // 05b pickModel — model setup
   600,   // 06 Block 1 section      ← 10 min mark
   720,   // 07 Recipe (live coding)
   900,   // 08 instruction = contract (live)
