@@ -28,9 +28,9 @@ export const hl = (s: string) => <span className="text-[#a78bfa]">{s}</span>
 export const ok = (s: string) => <span className="text-[#4ade80]">{s}</span>
 export const er = (s: string) => <span className="text-[#f87171]">{s}</span>
 
-export function Code({ children }: { children: ReactNode }) {
+export function Code({ children, compact }: { children: ReactNode; compact?: boolean }) {
   return (
-    <pre className="bg-black/40 rounded-lg p-4 text-[13px] leading-6 text-white/85 font-mono overflow-hidden">
+    <pre className={`bg-black/40 rounded-lg font-mono overflow-hidden text-white/85 ${compact ? 'p-3 text-[12px] leading-5' : 'p-4 text-[13px] leading-6'}`}>
       <code>{children}</code>
     </pre>
   )

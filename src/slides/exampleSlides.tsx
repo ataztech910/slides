@@ -117,7 +117,7 @@ function Slide01bRawDemo({ slideNumber }: SlideProps) {
             {'  '}RESPONSE=$(claude -p {st('"$TOOLS $HISTORY Next:"')}){'\n\n'}
             {'  '}{kw('if')}   done:*       {cm('→ print & exit')}{'\n'}
             {'  '}{kw('elif')} write_data:* {cm('→ echo ... >> data.txt')}{'\n'}
-            {'  '}{kw('elif')} read_data    {cm('→ RESULT=$(cat data.txt)')}{'\n'}
+            {'  '}{kw('elif')} read_data    {cm('→ $(cat data.txt)')}{'\n'}
             {'  '}{kw('fi')}{'\n\n'}
             {'  '}HISTORY+={st('"[turn $turn] $RESPONSE"')}{'\n'}
             {kw('done')}
@@ -546,7 +546,7 @@ function Slide13SequentialCode({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Block 2" title="SequentialAgent — same LlmAgent, different wrapper" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full">
         <div className="flex-1 flex flex-col justify-center">
-          <Code>
+          <Code compact>
             {kw('const')} researcher = {kw('new')} {hl('LlmAgent')}({'{'}{'\n'}
             {'  '}name: {st('"researcher"')}, model: pickModel(),{'\n'}
             {'  '}instruction: {st('"...return ONLY JSON { facts: [] }"')},{'\n'}
@@ -577,15 +577,15 @@ function Slide13SequentialCode({ slideNumber }: SlideProps) {
 function Slide14WriteBlock2({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Block 2 · Hands-on" title="Task 1.3 — SequentialAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
-      <div className="flex flex-col gap-4 h-full">
-        <div className="flex gap-4">
-          <div className="flex-1 bg-white/[0.04] rounded-lg p-4 flex flex-col gap-2">
+      <div className="flex flex-col gap-3 h-full">
+        <div className="flex gap-3">
+          <div className="flex-1 bg-white/[0.04] rounded-lg p-3 flex flex-col gap-1.5">
             <Tag color="#a78bfa">researcher</Tag>
             <div className="text-[13px] text-white/60 font-light">receives topic</div>
             <div className="text-[13px] text-[#00c4b4] font-mono">{'→ { "facts": ["...", "...", "..."] }'}</div>
             <div className="text-[12px] text-white/30">strict JSON, no surrounding text</div>
           </div>
-          <div className="flex-1 bg-white/[0.04] rounded-lg p-4 flex flex-col gap-2">
+          <div className="flex-1 bg-white/[0.04] rounded-lg p-3 flex flex-col gap-1.5">
             <Tag color="#4ade80">editor</Tag>
             <div className="text-[13px] text-white/60 font-light">receives facts</div>
             <div className="text-[13px] text-[#00c4b4] font-mono">→ one paragraph in prose</div>
