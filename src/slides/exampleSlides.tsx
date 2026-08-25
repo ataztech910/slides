@@ -477,13 +477,13 @@ function Slide05dKitanaSetup({ slideNumber }: SlideProps) {
         <div className="flex-1 flex flex-col gap-3">
           <div className="text-[12px] text-[#4b5563] uppercase tracking-widest">Verify it works</div>
           <Code compact>npm run check-kitana</Code>
-          <div className="flex flex-col gap-1 bg-black/40 rounded-lg px-3 py-2.5 font-mono text-[11px] leading-5">
-            <span className="text-[#4b5563]">1) Checking Claude CLI...</span>
-            <span className="text-[#16a34a]">   ✓ claude 1.x.x</span>
-            <span className="text-[#4b5563]">2) Running a test prompt...</span>
-            <span className="text-[#16a34a]">   ✓ Claude CLI responded: OK</span>
-            <span className="text-[#4b5563]">{''}</span>
-            <span className="text-[#16a34a]">✓ Kitana is ready.</span>
+          <div className="flex flex-col gap-1 bg-[#111827] rounded-lg px-3 py-2.5 font-mono text-[11px] leading-5">
+            <span className="text-white/50">1) Checking Claude CLI...</span>
+            <span className="text-[#4ade80]">   ✓ claude 1.x.x</span>
+            <span className="text-white/50">2) Running a test prompt...</span>
+            <span className="text-[#4ade80]">   ✓ Claude CLI responded: OK</span>
+            <span className="text-white/50">{''}</span>
+            <span className="text-[#4ade80]">✓ Kitana is ready.</span>
           </div>
           <div className="text-[12px] text-[#4b5563] leading-5">
             Requires a <span className="text-[#374151]">Claude.ai Pro or Max</span> subscription (or Team / Enterprise).
