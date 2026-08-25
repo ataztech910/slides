@@ -646,7 +646,7 @@ function Slide09FunctionTool({ slideNumber }: SlideProps) {
             tools: [weatherTool],
           </Code>
           <div className="text-[11px] text-white/30 leading-4">
-            <span className="font-mono text-white/50">z.object / z.string</span> — Zod, a schema validation library (already in package.json). ADK uses it to validate the arguments the model passes before calling <span className="font-mono text-white/50">execute</span>.
+            <span className="font-mono text-white/50">z.object / z.string</span> — Zod is <span className="text-white/50">required by ADK</span>: it generates the JSON Schema sent to the model (so the model knows what arguments to pass) and validates them before <span className="font-mono text-white/50">execute</span> is called. Python ADK uses type hints instead — no Zod there.
           </div>
         </div>
       </div>
