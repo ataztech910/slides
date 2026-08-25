@@ -90,50 +90,39 @@ function Slide01Title({ slideNumber }: SlideProps) {
 function Slide01bRawDemo({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Intro · Before any framework" title="From single call to agent loop — no framework" slideNumber={slideNumber} footerLabel={FOOTER}>
-      <div className="flex gap-6 h-full items-start pt-2">
-        <div className="flex-1 flex flex-col gap-4">
-          <div className="flex items-center gap-2">
-            <Tag color="#4ade80">Level 1 · single call</Tag>
-          </div>
+      <div className="flex gap-6 h-full items-start pt-1">
+        <div className="flex-1 flex flex-col gap-3">
+          <Tag color="#4ade80">Level 1 · single call</Tag>
           <Code>
             {cm('# one prompt → one answer → saved to file')}{'\n'}
             bash examples/00-raw/call.sh{'\n'}
             bash examples/00-raw/call.sh {st('"What is an AI agent?"')}
           </Code>
-          <div className="text-[12px] text-white/30 leading-5">
-            No loop. No tools. You decide what to do with the answer.
-          </div>
-          <div className="w-full h-px bg-white/10 my-1" />
-          <div className="flex items-center gap-2">
-            <Tag color="#a78bfa">Level 2 · agent loop</Tag>
-          </div>
+          <div className="text-[12px] text-white/30">No loop. No tools. You decide what to do with the answer.</div>
+          <div className="w-full h-px bg-white/10" />
+          <Tag color="#a78bfa">Level 2 · agent loop</Tag>
           <Code>
             {cm('# model decides → tool → result back → repeat → done')}{'\n'}
             bash examples/00-raw/loop.sh
           </Code>
           <div className="text-[12px] text-white/30 leading-5">
             Tools: <span className="text-[#00c4b4] font-mono">write_data</span> · <span className="text-[#00c4b4] font-mono">read_data</span> · <span className="text-[#4ade80] font-mono">done:</span><br />
-            Model writes data across multiple turns, reads it back, then finishes.
+            Model writes data across turns, reads it back, then finishes.
           </div>
         </div>
-        <div className="flex-1 flex flex-col gap-4 justify-center">
+        <div className="flex-1 flex flex-col gap-3">
+          <div className="text-[12px] text-white/40 uppercase tracking-widest">loop.sh — the cycle</div>
           <Code>
-            {cm('# loop.sh in ~20 lines of bash:')}{'\n\n'}
             {kw('for')} turn {kw('in')} $(seq 1 10); {kw('do')}{'\n'}
-            {'  '}RESPONSE=$(claude -p {st('"$TOOLS\n\n$HISTORY\n\nNext action:"')}){'\n\n'}
-            {'  '}{kw('if')} [[ $RESPONSE == {st('"done:*"')} ]]; {kw('then')}{'\n'}
-            {'    '}{kw('echo')} {st('"✓ ${RESPONSE#done: }"')}; {kw('exit')}{'\n'}
-            {'  '}{kw('elif')} [[ $RESPONSE == {st('"write_data:*"')} ]]; {kw('then')}{'\n'}
-            {'    '}{kw('echo')} {st('"${RESPONSE#write_data: }"')} {'>>'} data.txt{'\n'}
-            {'  '}{kw('elif')} [[ $RESPONSE == {st('"read_data"')} ]]; {kw('then')}{'\n'}
-            {'    '}RESULT=$(cat data.txt){'\n'}
-            {'  '}{kw('fi')}{'\n'}
-            {'  '}HISTORY={st('"$HISTORY\n[turn $turn] $RESPONSE → $RESULT"')}{'\n'}
+            {'  '}RESPONSE=$(claude -p {st('"$TOOLS $HISTORY Next:"')}){'\n\n'}
+            {'  '}{kw('if')}   done:*       {cm('→ print & exit')}{'\n'}
+            {'  '}{kw('elif')} write_data:* {cm('→ echo ... >> data.txt')}{'\n'}
+            {'  '}{kw('elif')} read_data    {cm('→ RESULT=$(cat data.txt)')}{'\n'}
+            {'  '}{kw('fi')}{'\n\n'}
+            {'  '}HISTORY+={st('"[turn $turn] $RESPONSE"')}{'\n'}
             {kw('done')}
           </Code>
-          <div className="text-[12px] text-white/30 leading-5">
-            Same loop ADK runs — just visible. No SDK, no API key.
-          </div>
+          <div className="text-[12px] text-white/30">Same loop ADK runs internally. No SDK, no API key.</div>
         </div>
       </div>
     </ContentSlide>

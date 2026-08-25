@@ -251,10 +251,13 @@ export function PresentationApp({
   const progress = (displayElapsed / durationSec) * 100
   const barColor = remaining > 10 * 60 ? '#4ade80' : remaining > 5 * 60 ? '#fbbf24' : '#f87171'
   const slide = slides[current]
-  const slideMarkers = (cuePointsSec ?? []).slice(0, total).map((cuePointSec, index) => ({
+  // Normalize markers to span the full bar width (last cue point = 100%).
+  const cues = cuePointsSec ?? []
+  const markerSpan = cues.length > 0 ? (cues[cues.length - 1] || durationSec) : durationSec
+  const slideMarkers = cues.slice(0, total).map((cuePointSec, index) => ({
     index,
     label: index + 1,
-    left: `${(cuePointSec / durationSec) * 100}%`,
+    left: `${(cuePointSec / markerSpan) * 100}%`,
     isActive: index === current,
   }))
 

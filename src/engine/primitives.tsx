@@ -30,7 +30,7 @@ export const er = (s: string) => <span className="text-[#f87171]">{s}</span>
 
 export function Code({ children }: { children: ReactNode }) {
   return (
-    <pre className="bg-black/40 rounded-lg p-4 text-[13px] leading-6 text-white/85 font-mono overflow-auto">
+    <pre className="bg-black/40 rounded-lg p-4 text-[13px] leading-6 text-white/85 font-mono overflow-hidden">
       <code>{children}</code>
     </pre>
   )
@@ -58,7 +58,7 @@ export function ContentSlide({
       <h2 className="text-[26px] font-light text-white mb-8 border-l-[3px] border-[#2a5ff5] pl-3">
         {title}
       </h2>
-      <div className="flex-1 min-h-0">{children}</div>
+      <div className="flex-1 min-h-0 overflow-hidden">{children}</div>
       <Footer n={slideNumber} label={footerLabel} />
     </div>
   )
