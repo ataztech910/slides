@@ -629,24 +629,25 @@ function Slide09FunctionTool({ slideNumber }: SlideProps) {
             <span className="bg-[#4ade80]/10 border border-[#4ade80]/30 rounded px-3 py-2 text-[#86efac]">"London: 18°C, cloudy"</span>
           </div>
         </div>
-        <div className="flex-1 flex flex-col justify-center">
-          <Code>
+        <div className="flex-1 flex flex-col justify-center gap-2">
+          <Code compact>
             {kw('const')} weatherTool = {kw('new')} {hl('FunctionTool')}({'{'}{'\n'}
             {'  '}name: {st('"getWeather"')},{'\n'}
             {'  '}description: {st('"Returns weather for a city"')},{'\n'}
-            {'  '}parameters: z.object({'{'}{'\n'}
+            {'  '}parameters: z.object({'{'} {cm('// ← Zod schema')}{'\n'}
             {'    '}city: z.string(),{'\n'}
             {'  '}{'}'},{'\n'}
             {'  '}{kw('execute')}: {kw('async')} ({'{'} city {'}'}) {'=>'} {'{'}{'\n'}
             {'    '}{cm('// TODO: return fake data')}{'\n'}
             {'    '}{kw('return')} {'{'} tempC: 18 {'}'};{'\n'}
             {'  '},{'}'},{'\n'}
-            {'}'});{'\n\n'}
-            {kw('export const')} agent = {kw('new')} {hl('LlmAgent')}({'{'}{'\n'}
-            {'  '}...{'\n'}
-            {'  '}tools: [weatherTool], {cm('// ← attach')}{'\n'}
-            {'}'});
+            {'}'});{'\n'}
+            {cm('// attach to the agent:')}{'\n'}
+            tools: [weatherTool],
           </Code>
+          <div className="text-[11px] text-white/30 leading-4">
+            <span className="font-mono text-white/50">z.object / z.string</span> — Zod, a schema validation library (already in package.json). ADK uses it to validate the arguments the model passes before calling <span className="font-mono text-white/50">execute</span>.
+          </div>
         </div>
       </div>
     </ContentSlide>
