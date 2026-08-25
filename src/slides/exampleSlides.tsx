@@ -446,7 +446,7 @@ function Slide09FunctionTool({ slideNumber }: SlideProps) {
             {'  '}parameters: z.object({'{'}{'\n'}
             {'    '}city: z.string(),{'\n'}
             {'  '}{'}'},{'\n'}
-            {'  '}{kw('execute')}: {kw('async')} ({'{'} city {'}'}) => {'{'}{'\n'}
+            {'  '}{kw('execute')}: {kw('async')} ({'{'} city {'}'}) {'=>'} {'{'}{'\n'}
             {'    '}{cm('// TODO: вернуть фейковые данные')}{'\n'}
             {'    '}{kw('return')} {'{'} tempC: 18 {'}'};{'\n'}
             {'  '},{'}'},{'\n'}
