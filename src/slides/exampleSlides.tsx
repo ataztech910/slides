@@ -365,6 +365,110 @@ function Slide05bPickModel({ slideNumber }: SlideProps) {
   )
 }
 
+function Slide05cGeminiSetup({ slideNumber }: SlideProps) {
+  return (
+    <ContentSlide eyebrow="Intro · Setup" title="Gemini free tier — 3 steps" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex gap-6 h-full items-start pt-1">
+        <div className="flex-1 flex flex-col gap-3">
+          {([
+            { n: '1', label: 'aistudio.google.com', lines: ['Sign in with any Google account.', 'No Cloud billing account needed.'] },
+            { n: '2', label: 'Get API key → Create API key', lines: ['Left sidebar → "Get API key" → Create API key.', 'Pick any project. Keep billing disabled.'] },
+            { n: '3', label: 'Paste key into .env', lines: ['Copy GOOGLE_GENAI_API_KEY= from .env.example,', 'paste your key. Never commit this file.'] },
+          ] as { n: string; label: string; lines: string[] }[]).map((s) => (
+            <div key={s.n} className="flex gap-3 items-start">
+              <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">{s.n}</div>
+              <div>
+                <div className="text-[14px] text-white font-light leading-5">{s.label}</div>
+                {s.lines.map((l) => <div key={l} className="text-[12px] text-white/40 leading-4">{l}</div>)}
+              </div>
+            </div>
+          ))}
+          <div className="flex items-start gap-2 bg-[#fbbf24]/10 border border-[#fbbf24]/30 rounded-lg px-3 py-2">
+            <span className="text-[#fbbf24] text-[13px] shrink-0">⚠</span>
+            <div className="text-[12px] text-white/60 leading-5">
+              <span className="text-[#fbbf24]">Don't enable billing</span> on the project — it permanently removes free-tier access.
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 flex flex-col gap-3">
+          <div className="text-[12px] text-white/40 uppercase tracking-widest">Free tier limits (approximate)</div>
+          <div className="flex flex-col gap-1.5">
+            {([
+              { model: 'gemini-2.0-flash', rpm: '10 RPM', day: '~250 req/day' },
+              { model: 'gemini-2.0-flash-lite', rpm: '15 RPM', day: '~1,000 req/day' },
+              { model: 'gemini-2.5-pro', rpm: '5 RPM', day: '~100 req/day' },
+            ] as { model: string; rpm: string; day: string }[]).map((r) => (
+              <div key={r.model} className="flex items-center gap-3 bg-white/[0.03] rounded px-3 py-1.5">
+                <span className="font-mono text-[11px] text-white/70 flex-1">{r.model}</span>
+                <span className="text-[11px] text-white/40">{r.rpm}</span>
+                <span className="text-[11px] text-white/40">{r.day}</span>
+              </div>
+            ))}
+          </div>
+          <div className="text-[11px] text-white/25 leading-4">Check live quotas in AI Studio — limits change over time.</div>
+          <div className="text-[12px] text-white/40 uppercase tracking-widest mt-1">.env</div>
+          <Code compact>
+            {cm('# copy .env.example first, then paste your key')}{'\n'}
+            GOOGLE_GENAI_API_KEY={st('AIzaSy...')}
+          </Code>
+        </div>
+      </div>
+    </ContentSlide>
+  )
+}
+
+function Slide05dKitanaSetup({ slideNumber }: SlideProps) {
+  return (
+    <ContentSlide eyebrow="Intro · Setup" title="Kitana — Claude CLI, no API key" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex gap-6 h-full items-start pt-1">
+        <div className="flex-1 flex flex-col gap-3">
+          <div className="flex gap-3 items-start">
+            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">1</div>
+            <div className="flex-1 flex flex-col gap-1.5">
+              <div className="text-[14px] text-white font-light leading-5">Install Claude CLI</div>
+              <Code compact>npm install -g @anthropic-ai/claude-code</Code>
+              <div className="text-[12px] text-white/40 leading-4">Then run <span className="font-mono text-white/60">claude</span> once — opens browser, sign in to Claude.ai.</div>
+            </div>
+          </div>
+          <div className="flex gap-3 items-start">
+            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">2</div>
+            <div>
+              <div className="text-[14px] text-white font-light leading-5">@kitana-sdk/adk already in package.json</div>
+              <div className="text-[12px] text-white/40 leading-4"><span className="font-mono text-white/60">npm install</span> in the workshop root covers it. No extra step.</div>
+            </div>
+          </div>
+          <div className="flex gap-3 items-start">
+            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">3</div>
+            <div className="flex-1 flex flex-col gap-1.5">
+              <div className="text-[14px] text-white font-light leading-5">Switch pickModel() — one line</div>
+              <Code compact>
+                {cm('// return "gemini-2.0-flash";')}{'\n'}
+                {kw('return')} {kw('new')} {hl('KitanaLlm')}({'{'} model: {st('"auto"')} {'}'})
+              </Code>
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 flex flex-col gap-3">
+          <div className="text-[12px] text-white/40 uppercase tracking-widest">Verify it works</div>
+          <Code compact>bash examples/check-kitana.sh</Code>
+          <div className="flex flex-col gap-1 bg-black/40 rounded-lg px-3 py-2.5 font-mono text-[11px] leading-5">
+            <span className="text-white/40">1) Checking Claude CLI...</span>
+            <span className="text-[#4ade80]">   ✓ claude 1.x.x</span>
+            <span className="text-white/40">2) Running a test prompt...</span>
+            <span className="text-[#4ade80]">   ✓ Claude CLI responded: OK</span>
+            <span className="text-white/40">{''}</span>
+            <span className="text-[#4ade80]">✓ Kitana is ready.</span>
+          </div>
+          <div className="text-[12px] text-white/30 leading-5">
+            Requires a <span className="text-white/55">Claude.ai Pro or Max</span> subscription (or Team / Enterprise).
+            Free plan does not include CLI access.
+          </div>
+        </div>
+      </div>
+    </ContentSlide>
+  )
+}
+
 // ─── BLOCK 1 ─────────────────────────────────────────────────────────────────
 
 function Slide06Block1Section({ slideNumber }: SlideProps) {
@@ -999,6 +1103,8 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
   { Component: Slide04WhyAdk },
   { Component: Slide05Plan },
   { Component: Slide05bPickModel },
+  { Component: Slide05cGeminiSetup },
+  { Component: Slide05dKitanaSetup },
   // Block 1 (6–11)
   { Component: Slide06Block1Section },
   { Component: Slide07Recipe },
@@ -1037,6 +1143,8 @@ export const EXAMPLE_CUE_POINTS_SEC = [
   330,   // 04 Why ADK
   480,   // 05 Plan
   540,   // 05b pickModel — model setup
+  560,   // 05c Gemini free tier setup
+  580,   // 05d Kitana setup
   600,   // 06 Block 1 section      ← 10 min mark
   720,   // 07 Recipe (live coding)
   900,   // 08 instruction = contract (live)
