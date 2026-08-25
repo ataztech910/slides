@@ -105,10 +105,6 @@ function Slide01bRawDemo({ slideNumber }: SlideProps) {
             {cm('# model decides → tool → result back → repeat → done')}{'\n'}
             bash examples/00-raw/loop.sh
           </Code>
-          <div className="text-[12px] text-white/30 leading-5">
-            Tools: <span className="text-[#00c4b4] font-mono">write_data</span> · <span className="text-[#00c4b4] font-mono">read_data</span> · <span className="text-[#4ade80] font-mono">done:</span><br />
-            Model writes data across turns, reads it back, then finishes.
-          </div>
         </div>
         <div className="flex-1 flex flex-col gap-3">
           <div className="text-[12px] text-white/40 uppercase tracking-widest">loop.sh — the cycle</div>
@@ -122,7 +118,6 @@ function Slide01bRawDemo({ slideNumber }: SlideProps) {
             {'  '}HISTORY+={st('"[turn $turn] $RESPONSE"')}{'\n'}
             {kw('done')}
           </Code>
-          <div className="text-[12px] text-white/30">Same loop ADK runs internally. No SDK, no API key.</div>
         </div>
       </div>
     </ContentSlide>
