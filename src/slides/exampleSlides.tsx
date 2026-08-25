@@ -604,6 +604,49 @@ function Slide08InstructionContract({ slideNumber }: SlideProps) {
   )
 }
 
+function Slide08bZod({ slideNumber }: SlideProps) {
+  return (
+    <ContentSlide eyebrow="Block 1" title="Zod — describing the shape of data" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex gap-6 h-full items-start pt-1">
+        <div className="flex-1 flex flex-col gap-4">
+          <div className="text-[13px] text-white/60 font-light leading-6">
+            Zod is a TypeScript schema library. You describe what shape your data should have — Zod validates it at runtime and infers the TypeScript types automatically.
+          </div>
+          <div className="flex flex-col gap-2.5">
+            {([
+              { label: 'Schema = contract', desc: 'You declare the fields and types once. Zod enforces them.' },
+              { label: 'Why ADK needs it', desc: 'FunctionTool converts your Zod schema to JSON Schema and sends it to the model, so the model knows exactly what arguments to pass.' },
+              { label: 'Validation before execute', desc: 'When the model calls the tool, ADK validates the arguments against the schema before your function runs.' },
+            ] as { label: string; desc: string }[]).map((b) => (
+              <div key={b.label} className="flex gap-3 items-start">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#2a5ff5] mt-2 shrink-0" />
+                <div>
+                  <span className="text-[13px] text-white/80">{b.label}</span>
+                  <span className="text-[13px] text-white/40"> — {b.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex-1 flex flex-col gap-3">
+          <div className="text-[12px] text-white/40 uppercase tracking-widest">Types you'll use in this workshop</div>
+          <Code compact>
+            z.object({'{'} city: z.string() {'}'})  {cm('// object with named fields')}{'\n'}
+            z.string()                   {cm('// text value')}{'\n'}
+            z.number()                   {cm('// numeric value')}{'\n'}
+            z.boolean()                  {cm('// true / false')}{'\n'}
+            z.optional(z.string())       {cm('// field can be absent')}{'\n'}
+            z.string().describe({st('"the city name"')}) {cm('// hint for the model')}
+          </Code>
+          <div className="text-[11px] text-white/25 leading-4">
+            The <span className="font-mono text-white/45">.describe()</span> hint goes into the JSON Schema — the model reads it to understand what value to put in that field.
+          </div>
+        </div>
+      </div>
+    </ContentSlide>
+  )
+}
+
 function Slide09FunctionTool({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Block 1" title="FunctionTool — give the agent a tool" slideNumber={slideNumber} footerLabel={FOOTER}>
@@ -1149,6 +1192,7 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
   { Component: Slide06bAdkConcepts },
   { Component: Slide07Recipe },
   { Component: Slide08InstructionContract },
+  { Component: Slide08bZod },
   { Component: Slide09FunctionTool },
   { Component: Slide10WriteBlock1 },
   // Block 2 (10–14)
@@ -1189,6 +1233,7 @@ export const EXAMPLE_CUE_POINTS_SEC = [
   660,   // 06b ADK building blocks
   720,   // 07 Recipe (live coding)
   900,   // 08 instruction = contract (live)
+  960,   // 08b Zod schema intro
   1020,  // 09 FunctionTool (live)
   1200,  // 10 Write Block 1        ← 20 min, 18 min timer
   2280,  // 11 Block 2 section      ← 38 min (10+25+3 buffer)
