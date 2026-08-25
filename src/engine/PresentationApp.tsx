@@ -360,7 +360,7 @@ export function PresentationApp({
         <div className="flex items-center justify-between py-2 gap-2">
           <button
             onClick={() => go(-1)}
-            className="bg-[#1a3a6b] text-white border-0 px-4 py-1.5 rounded cursor-pointer text-sm hover:bg-[#2a5ab0] transition-colors"
+            className="bg-[#1a73e8] text-white border-0 px-4 py-1.5 rounded cursor-pointer text-sm hover:bg-[#1557b0] transition-colors"
           >
             ← Prev
           </button>
@@ -369,7 +369,7 @@ export function PresentationApp({
           </span>
           <button
             onClick={() => go(1)}
-            className="bg-[#1a3a6b] text-white border-0 px-4 py-1.5 rounded cursor-pointer text-sm hover:bg-[#2a5ab0] transition-colors"
+            className="bg-[#1a73e8] text-white border-0 px-4 py-1.5 rounded cursor-pointer text-sm hover:bg-[#1557b0] transition-colors"
           >
             Next →
           </button>

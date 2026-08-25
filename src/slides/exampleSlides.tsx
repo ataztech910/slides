@@ -8,7 +8,7 @@ const FOOTER = 'Build AI Agents · 2026'
 
 function Bullet({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-3 items-start text-[16px] text-white/80 font-light leading-snug">
+    <div className="flex gap-3 items-start text-[16px] text-[#1f2937] font-light leading-snug">
       <span className="text-[#2a5ff5] mt-0.5 shrink-0">▸</span>
       <span>{children}</span>
     </div>
@@ -98,8 +98,8 @@ function Slide01bRawDemo({ slideNumber }: SlideProps) {
             bash examples/00-raw/call.sh{'\n'}
             bash examples/00-raw/call.sh {st('"What is an AI agent?"')}
           </Code>
-          <div className="text-[12px] text-white/30">No loop. No tools. You decide what to do with the answer.</div>
-          <div className="w-full h-px bg-white/10" />
+          <div className="text-[12px] text-[#9ca3af]">No loop. No tools. You decide what to do with the answer.</div>
+          <div className="w-full h-px bg-[#e5e7eb]" />
           <Tag color="#a78bfa">Level 2 · agent loop</Tag>
           <Code>
             {cm('# model decides → tool → result back → repeat → done')}{'\n'}
@@ -107,7 +107,7 @@ function Slide01bRawDemo({ slideNumber }: SlideProps) {
           </Code>
         </div>
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[12px] text-white/40 uppercase tracking-widest">loop.sh — the cycle</div>
+          <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">loop.sh — the cycle</div>
           <Code>
             {kw('for')} turn {kw('in')} $(seq 1 10); {kw('do')}{'\n'}
             {'  '}RESPONSE=$(claude -p {st('"$TOOLS $HISTORY Next:"')}){'\n\n'}
@@ -129,37 +129,37 @@ function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Intro · Part 1" title="Three Levels of LLM Usage" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-4 h-full">
         {/* Level 1 */}
-        <div className="flex-1 flex flex-col gap-2 bg-white/[0.04] rounded-lg p-4">
+        <div className="flex-1 flex flex-col gap-2 bg-[#f5f7fa] rounded-lg p-4">
           <Tag color="#4ade80">Single Call</Tag>
-          <div className="text-[13px] text-white/50 font-light">Question → answer</div>
+          <div className="text-[13px] text-[#6b7280] font-light">Question → answer</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-2">
-              <span className="bg-white/10 rounded px-2 py-1 text-white/70">Input</span>
-              <span className="text-white/30">→</span>
-              <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#7dd3fc]">LLM</span>
-              <span className="text-white/30">→</span>
-              <span className="bg-white/10 rounded px-2 py-1 text-white/70">Answer</span>
+              <span className="bg-[#f0f4f8] rounded px-2 py-1 text-[#374151]">Input</span>
+              <span className="text-[#9ca3af]">→</span>
+              <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#2563eb]">LLM</span>
+              <span className="text-[#9ca3af]">→</span>
+              <span className="bg-[#f0f4f8] rounded px-2 py-1 text-[#374151]">Answer</span>
             </div>
           </div>
-          <div className="text-[12px] text-white/40 leading-5">
+          <div className="text-[12px] text-[#9ca3af] leading-5">
             Classification, summarization, data extraction.<br />
-            <span className="text-white/60">You decide what to do with the answer.</span>
+            <span className="text-[#4b5563]">You decide what to do with the answer.</span>
           </div>
         </div>
         {/* Level 2 */}
-        <div className="flex-1 flex flex-col gap-2 bg-white/[0.04] rounded-lg p-4">
+        <div className="flex-1 flex flex-col gap-2 bg-[#f5f7fa] rounded-lg p-4">
           <Tag color="#fbbf24">Workflow</Tag>
-          <div className="text-[13px] text-white/50 font-light">Fixed pipeline</div>
+          <div className="text-[13px] text-[#6b7280] font-light">Fixed pipeline</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-1 flex-wrap">
-              <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#7dd3fc]">LLM 1</span>
-              <span className="text-white/30">→</span>
-              <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#7dd3fc]">LLM 2</span>
-              <span className="text-white/30">→</span>
-              <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#7dd3fc]">LLM 3</span>
+              <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#2563eb]">LLM 1</span>
+              <span className="text-[#9ca3af]">→</span>
+              <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#2563eb]">LLM 2</span>
+              <span className="text-[#9ca3af]">→</span>
+              <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#2563eb]">LLM 3</span>
             </div>
           </div>
-          <div className="text-[12px] text-white/40 leading-5">
+          <div className="text-[12px] text-[#9ca3af] leading-5">
             Step order fixed by <span className="text-[#fbbf24]">your code</span>.<br />
             The model doesn't decide what's next.
           </div>
@@ -167,17 +167,17 @@ function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
         {/* Level 3 */}
         <div className="flex-1 flex flex-col gap-2 bg-[#2a5ff5]/10 border border-[#2a5ff5]/30 rounded-lg p-4">
           <Tag color="#a78bfa">Agent</Tag>
-          <div className="text-[13px] text-white/50 font-light">Loop until done</div>
+          <div className="text-[13px] text-[#6b7280] font-light">Loop until done</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-1 flex-wrap">
-              <span className="bg-[#a78bfa]/30 rounded px-2 py-1 text-[#c4b5fd]">LLM decides</span>
-              <span className="text-white/30">→</span>
-              <span className="bg-[#00c4b4]/30 rounded px-2 py-1 text-[#5eead4]">Tool</span>
-              <span className="text-white/30">→</span>
-              <span className="text-white/30">repeat…</span>
+              <span className="bg-[#a78bfa]/30 rounded px-2 py-1 text-[#7c3aed]">LLM decides</span>
+              <span className="text-[#9ca3af]">→</span>
+              <span className="bg-[#00c4b4]/30 rounded px-2 py-1 text-[#0e7490]">Tool</span>
+              <span className="text-[#9ca3af]">→</span>
+              <span className="text-[#9ca3af]">repeat…</span>
             </div>
           </div>
-          <div className="text-[12px] text-white/40 leading-5">
+          <div className="text-[12px] text-[#9ca3af] leading-5">
             Step order decided by <span className="text-[#a78bfa]">the model</span> each iteration.<br />
             You give the goal and tools — not a script.
           </div>
@@ -199,13 +199,13 @@ function Slide02bAgentLimits({ slideNumber }: SlideProps) {
       <div className="flex flex-col gap-3 h-full">
         <div className="grid grid-cols-2 gap-3 flex-1">
           {items.map((item) => (
-            <div key={item.label} className="bg-white/[0.04] rounded-lg p-5 flex flex-col gap-2">
-              <div className="text-[13px] font-semibold uppercase tracking-widest text-white/80">{item.label}</div>
-              <div className="text-[13px] text-white/45 font-light leading-6">{item.desc}</div>
+            <div key={item.label} className="bg-[#f5f7fa] rounded-lg p-5 flex flex-col gap-2">
+              <div className="text-[13px] font-semibold uppercase tracking-widest text-[#1f2937]">{item.label}</div>
+              <div className="text-[13px] text-[#6b7280] font-light leading-6">{item.desc}</div>
             </div>
           ))}
         </div>
-        <div className="text-[10px] text-white/20 text-center leading-4">
+        <div className="text-[10px] text-[#d1d5db] text-center leading-4">
           Source: SlopCodeBench by Snorkel AI · agents given sequential feature requests on one codebase, code inspected after every task · these four patterns recurred
         </div>
       </div>
@@ -220,25 +220,25 @@ function Slide03AgentLoop({ slideNumber }: SlideProps) {
         {/* Loop diagram */}
         <div className="flex items-center justify-center gap-3">
           <div className="flex flex-col items-center gap-1">
-            <div className="bg-white/10 rounded-lg px-4 py-3 text-[14px] text-white/70">User</div>
-            <div className="text-[11px] text-white/30">request</div>
+            <div className="bg-[#f0f4f8] rounded-lg px-4 py-3 text-[14px] text-[#374151]">User</div>
+            <div className="text-[11px] text-[#9ca3af]">request</div>
           </div>
           <div className="text-[#2a5ff5] text-xl">→</div>
           <div className="flex flex-col items-center gap-1">
-            <div className="bg-[#2a5ff5]/40 border border-[#2a5ff5] rounded-lg px-6 py-3 text-[15px] text-white font-light">
+            <div className="bg-[#2a5ff5]/40 border border-[#2a5ff5] rounded-lg px-6 py-3 text-[15px] text-[#111827] font-light">
               Model decides
             </div>
-            <div className="text-[11px] text-white/30">what's next?</div>
+            <div className="text-[11px] text-[#9ca3af]">what's next?</div>
           </div>
           <div className="flex flex-col items-center gap-1">
             <div className="text-[12px] text-[#00c4b4]">needs a tool</div>
             <div className="text-[#00c4b4] text-xl">→</div>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <div className="bg-[#00c4b4]/30 border border-[#00c4b4]/50 rounded-lg px-4 py-3 text-[14px] text-[#5eead4]">
+            <div className="bg-[#00c4b4]/30 border border-[#00c4b4]/50 rounded-lg px-4 py-3 text-[14px] text-[#0e7490]">
               Tool
             </div>
-            <div className="text-[11px] text-white/30">result</div>
+            <div className="text-[11px] text-[#9ca3af]">result</div>
           </div>
           <div className="flex flex-col items-center gap-1">
             <div className="text-[12px] text-[#00c4b4]">back</div>
@@ -247,9 +247,9 @@ function Slide03AgentLoop({ slideNumber }: SlideProps) {
         </div>
         <div className="flex items-center justify-center">
           <div className="flex flex-col items-center gap-1">
-            <div className="text-[12px] text-[#4ade80]">answer ready</div>
-            <div className="text-[#4ade80] text-xl">↓</div>
-            <div className="bg-[#4ade80]/20 border border-[#4ade80]/40 rounded-lg px-6 py-2 text-[14px] text-[#4ade80]">
+            <div className="text-[12px] text-[#16a34a]">answer ready</div>
+            <div className="text-[#16a34a] text-xl">↓</div>
+            <div className="bg-[#4ade80]/20 border border-[#4ade80]/40 rounded-lg px-6 py-2 text-[14px] text-[#16a34a]">
               Final Answer
             </div>
           </div>
@@ -262,9 +262,9 @@ function Slide03AgentLoop({ slideNumber }: SlideProps) {
             { label: 'Tools', desc: 'functions the model can call', color: '#00c4b4' },
             { label: 'Session', desc: 'history and state across iterations', color: '#fbbf24' },
           ].map((c) => (
-            <div key={c.label} className="flex-1 bg-white/[0.03] rounded-lg p-3">
+            <div key={c.label} className="flex-1 bg-[#f8fafc] rounded-lg p-3">
               <div className="text-[12px] font-semibold mb-1" style={{ color: c.color }}>{c.label}</div>
-              <div className="text-[11px] text-white/40">{c.desc}</div>
+              <div className="text-[11px] text-[#9ca3af]">{c.desc}</div>
             </div>
           ))}
         </div>
@@ -278,7 +278,7 @@ function Slide04WhyAdk({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Intro · Part 2" title="Why ADK" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-8 h-full items-start pt-2">
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">Without a framework — you reinvent</div>
+          <div className="text-[13px] text-[#9ca3af] uppercase tracking-widest mb-1">Without a framework — you reinvent</div>
           {[
             'Parsing model responses (text vs tool call — every provider has its own format)',
             'Storing history and state across iterations (session)',
@@ -289,9 +289,9 @@ function Slide04WhyAdk({ slideNumber }: SlideProps) {
             <Bullet key={t}>{t}</Bullet>
           ))}
         </div>
-        <div className="w-px bg-white/10 self-stretch" />
+        <div className="w-px bg-[#f0f4f8] self-stretch" />
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">Google ADK provides ready-made building blocks</div>
+          <div className="text-[13px] text-[#9ca3af] uppercase tracking-widest mb-1">Google ADK provides ready-made building blocks</div>
           {[
             ['LlmAgent', 'model + instruction + tools'],
             ['Runner', 'runs the loop, emits an event stream (for await)'],
@@ -302,7 +302,7 @@ function Slide04WhyAdk({ slideNumber }: SlideProps) {
           ].map(([name, desc]) => (
             <div key={name} className="flex gap-2 items-start text-[14px]">
               <span className="text-[#00c4b4] font-mono shrink-0">{name}</span>
-              <span className="text-white/50 font-light">— {desc}</span>
+              <span className="text-[#6b7280] font-light">— {desc}</span>
             </div>
           ))}
         </div>
@@ -325,13 +325,13 @@ function Slide05Plan({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Intro · Part 3" title="Today's Plan" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-1.5">
         {rows.map((r) => (
-          <div key={r.block} className="flex items-center gap-4 bg-white/[0.03] rounded px-4 py-2.5">
+          <div key={r.block} className="flex items-center gap-4 bg-[#f8fafc] rounded px-4 py-2.5">
             <span className="w-36 text-[13px] font-semibold shrink-0" style={{ color: r.color }}>{r.block}</span>
-            <span className="flex-1 text-[13px] text-white/70 font-light">{r.what}</span>
-            <span className="text-[12px] text-white/30 shrink-0">{r.time}</span>
+            <span className="flex-1 text-[13px] text-[#374151] font-light">{r.what}</span>
+            <span className="text-[12px] text-[#9ca3af] shrink-0">{r.time}</span>
           </div>
         ))}
-        <div className="text-right text-[11px] text-white/25 mt-1">total ~2h 45min</div>
+        <div className="text-right text-[11px] text-[#d1d5db] mt-1">total ~2h 45min</div>
       </div>
     </ContentSlide>
   )
@@ -342,28 +342,28 @@ function Slide05bPickModel({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Intro · Setup" title="Connecting a model — one line to switch" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-start pt-1">
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[12px] text-white/40 uppercase tracking-widest">Every agent in this workshop uses pickModel()</div>
+          <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">Every agent in this workshop uses pickModel()</div>
           <Code compact>
             {kw('function')} pickModel() {'{'}{'\n'}
             {'  '}{kw('return')} {st('"gemini-2.0-flash"')};{'\n'}
             {'  '}{cm('// return new KitanaLlm({ model: "auto" }); // ← Kitana')}{'\n'}
             {'}'}
           </Code>
-          <div className="text-[12px] text-white/30 leading-5">
+          <div className="text-[12px] text-[#9ca3af] leading-5">
             Uncomment one line to switch provider. Nothing else changes.
           </div>
-          <div className="w-full h-px bg-white/10" />
+          <div className="w-full h-px bg-[#e5e7eb]" />
           <div className="flex flex-col gap-2">
-            <div className="flex items-start gap-3 bg-white/[0.03] rounded-lg px-4 py-2">
+            <div className="flex items-start gap-3 bg-[#f8fafc] rounded-lg px-4 py-2">
               <span className="text-[#fbbf24] font-mono text-[13px] shrink-0 w-24">Gemini</span>
-              <div className="text-[13px] text-white/55 font-light leading-5">
-                Default. Needs <span className="text-white/80 font-mono">GOOGLE_GENAI_API_KEY</span> in <span className="font-mono text-white/80">.env</span>.<br />
-                Copy from <span className="font-mono text-white/80">.env.example</span> and paste your key.
+              <div className="text-[13px] text-[#555] font-light leading-5">
+                Default. Needs <span className="text-[#1f2937] font-mono">GOOGLE_GENAI_API_KEY</span> in <span className="font-mono text-[#1f2937]">.env</span>.<br />
+                Copy from <span className="font-mono text-[#1f2937]">.env.example</span> and paste your key.
               </div>
             </div>
-            <div className="flex items-start gap-3 bg-white/[0.03] rounded-lg px-4 py-2">
+            <div className="flex items-start gap-3 bg-[#f8fafc] rounded-lg px-4 py-2">
               <span className="text-[#00c4b4] font-mono text-[13px] shrink-0 w-24">Kitana</span>
-              <div className="text-[13px] text-white/55 font-light leading-5">
+              <div className="text-[13px] text-[#555] font-light leading-5">
                 No API key. Uses your Claude CLI subscription or local Ollama.<br />
                 Swap the return line — same code, different provider.
               </div>
@@ -371,7 +371,7 @@ function Slide05bPickModel({ slideNumber }: SlideProps) {
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-3 justify-center">
-          <div className="text-[12px] text-white/40 uppercase tracking-widest">Kitana under the hood</div>
+          <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">Kitana under the hood</div>
           <Code compact>
             {cm('# Claude CLI (subscription, no key):')}{'\n'}
             {kw('new')} {hl('KitanaLlm')}({'{'} model: {st('"auto"')} {'}'}){'\n\n'}
@@ -381,7 +381,7 @@ function Slide05bPickModel({ slideNumber }: SlideProps) {
             {'  '}models: {'{'} ollama: {st('"llama3.2"')} {'}'}{'\n'}
             {'}'})
           </Code>
-          <div className="text-[12px] text-white/30 leading-5">
+          <div className="text-[12px] text-[#9ca3af] leading-5">
             Same <span className="font-mono text-[#00c4b4]">BaseLlm</span> interface ADK expects —
             Gemini, Kitana, or anything else plugs in identically.
           </div>
@@ -402,37 +402,37 @@ function Slide05cGeminiSetup({ slideNumber }: SlideProps) {
             { n: '3', label: 'Paste key into .env', lines: ['Copy GOOGLE_GENAI_API_KEY= from .env.example,', 'paste your key. Never commit this file.'] },
           ] as { n: string; label: string; lines: string[] }[]).map((s) => (
             <div key={s.n} className="flex gap-3 items-start">
-              <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">{s.n}</div>
+              <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">{s.n}</div>
               <div>
-                <div className="text-[14px] text-white font-light leading-5">{s.label}</div>
-                {s.lines.map((l) => <div key={l} className="text-[12px] text-white/40 leading-4">{l}</div>)}
+                <div className="text-[14px] text-[#111827] font-light leading-5">{s.label}</div>
+                {s.lines.map((l) => <div key={l} className="text-[12px] text-[#9ca3af] leading-4">{l}</div>)}
               </div>
             </div>
           ))}
           <div className="flex items-start gap-2 bg-[#fbbf24]/10 border border-[#fbbf24]/30 rounded-lg px-3 py-2">
             <span className="text-[#fbbf24] text-[13px] shrink-0">⚠</span>
-            <div className="text-[12px] text-white/60 leading-5">
+            <div className="text-[12px] text-[#4b5563] leading-5">
               <span className="text-[#fbbf24]">Don't enable billing</span> on the project — it permanently removes free-tier access.
             </div>
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[12px] text-white/40 uppercase tracking-widest">Free tier limits (approximate)</div>
+          <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">Free tier limits (approximate)</div>
           <div className="flex flex-col gap-1.5">
             {([
               { model: 'gemini-2.0-flash', rpm: '10 RPM', day: '~250 req/day' },
               { model: 'gemini-2.0-flash-lite', rpm: '15 RPM', day: '~1,000 req/day' },
               { model: 'gemini-2.5-pro', rpm: '5 RPM', day: '~100 req/day' },
             ] as { model: string; rpm: string; day: string }[]).map((r) => (
-              <div key={r.model} className="flex items-center gap-3 bg-white/[0.03] rounded px-3 py-1.5">
-                <span className="font-mono text-[11px] text-white/70 flex-1">{r.model}</span>
-                <span className="text-[11px] text-white/40">{r.rpm}</span>
-                <span className="text-[11px] text-white/40">{r.day}</span>
+              <div key={r.model} className="flex items-center gap-3 bg-[#f8fafc] rounded px-3 py-1.5">
+                <span className="font-mono text-[11px] text-[#374151] flex-1">{r.model}</span>
+                <span className="text-[11px] text-[#9ca3af]">{r.rpm}</span>
+                <span className="text-[11px] text-[#9ca3af]">{r.day}</span>
               </div>
             ))}
           </div>
-          <div className="text-[11px] text-white/25 leading-4">Check live quotas in AI Studio — limits change over time.</div>
-          <div className="text-[12px] text-white/40 uppercase tracking-widest mt-1">.env</div>
+          <div className="text-[11px] text-[#d1d5db] leading-4">Check live quotas in AI Studio — limits change over time.</div>
+          <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest mt-1">.env</div>
           <Code compact>
             {cm('# copy .env.example first, then paste your key')}{'\n'}
             GOOGLE_GENAI_API_KEY={st('AIzaSy...')}
@@ -449,24 +449,24 @@ function Slide05dKitanaSetup({ slideNumber }: SlideProps) {
       <div className="flex gap-6 h-full items-start pt-1">
         <div className="flex-1 flex flex-col gap-3">
           <div className="flex gap-3 items-start">
-            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">1</div>
+            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">1</div>
             <div className="flex-1 flex flex-col gap-1.5">
-              <div className="text-[14px] text-white font-light leading-5">Install Claude CLI</div>
+              <div className="text-[14px] text-[#111827] font-light leading-5">Install Claude CLI</div>
               <Code compact>npm install -g @anthropic-ai/claude-code</Code>
-              <div className="text-[12px] text-white/40 leading-4">Then run <span className="font-mono text-white/60">claude</span> once — opens browser, sign in to Claude.ai.</div>
+              <div className="text-[12px] text-[#9ca3af] leading-4">Then run <span className="font-mono text-[#4b5563]">claude</span> once — opens browser, sign in to Claude.ai.</div>
             </div>
           </div>
           <div className="flex gap-3 items-start">
-            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">2</div>
+            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">2</div>
             <div>
-              <div className="text-[14px] text-white font-light leading-5">@kitana-sdk/adk already in package.json</div>
-              <div className="text-[12px] text-white/40 leading-4"><span className="font-mono text-white/60">npm install</span> in the workshop root covers it. No extra step.</div>
+              <div className="text-[14px] text-[#111827] font-light leading-5">@kitana-sdk/adk already in package.json</div>
+              <div className="text-[12px] text-[#9ca3af] leading-4"><span className="font-mono text-[#4b5563]">npm install</span> in the workshop root covers it. No extra step.</div>
             </div>
           </div>
           <div className="flex gap-3 items-start">
-            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">3</div>
+            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">3</div>
             <div className="flex-1 flex flex-col gap-1.5">
-              <div className="text-[14px] text-white font-light leading-5">Switch pickModel() — one line</div>
+              <div className="text-[14px] text-[#111827] font-light leading-5">Switch pickModel() — one line</div>
               <Code compact>
                 {cm('// return "gemini-2.0-flash";')}{'\n'}
                 {kw('return')} {kw('new')} {hl('KitanaLlm')}({'{'} model: {st('"auto"')} {'}'})
@@ -475,18 +475,18 @@ function Slide05dKitanaSetup({ slideNumber }: SlideProps) {
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[12px] text-white/40 uppercase tracking-widest">Verify it works</div>
+          <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">Verify it works</div>
           <Code compact>npm run check-kitana</Code>
           <div className="flex flex-col gap-1 bg-black/40 rounded-lg px-3 py-2.5 font-mono text-[11px] leading-5">
-            <span className="text-white/40">1) Checking Claude CLI...</span>
-            <span className="text-[#4ade80]">   ✓ claude 1.x.x</span>
-            <span className="text-white/40">2) Running a test prompt...</span>
-            <span className="text-[#4ade80]">   ✓ Claude CLI responded: OK</span>
-            <span className="text-white/40">{''}</span>
-            <span className="text-[#4ade80]">✓ Kitana is ready.</span>
+            <span className="text-[#9ca3af]">1) Checking Claude CLI...</span>
+            <span className="text-[#16a34a]">   ✓ claude 1.x.x</span>
+            <span className="text-[#9ca3af]">2) Running a test prompt...</span>
+            <span className="text-[#16a34a]">   ✓ Claude CLI responded: OK</span>
+            <span className="text-[#9ca3af]">{''}</span>
+            <span className="text-[#16a34a]">✓ Kitana is ready.</span>
           </div>
-          <div className="text-[12px] text-white/30 leading-5">
-            Requires a <span className="text-white/55">Claude.ai Pro or Max</span> subscription (or Team / Enterprise).
+          <div className="text-[12px] text-[#9ca3af] leading-5">
+            Requires a <span className="text-[#555]">Claude.ai Pro or Max</span> subscription (or Team / Enterprise).
             Free plan does not include CLI access.
           </div>
         </div>
@@ -521,14 +521,14 @@ function Slide06bAdkConcepts({ slideNumber }: SlideProps) {
       <div className="flex gap-6 h-full items-start pt-1">
         <div className="flex-1 flex flex-col gap-2">
           {blocks.map((b) => (
-            <div key={b.name} className="flex items-start gap-3 bg-white/[0.03] rounded-lg px-4 py-2.5">
+            <div key={b.name} className="flex items-start gap-3 bg-[#f8fafc] rounded-lg px-4 py-2.5">
               <span className="font-mono text-[13px] font-semibold shrink-0 w-36" style={{ color: b.color }}>{b.name}</span>
-              <span className="text-[13px] text-white/55 font-light leading-5">{b.desc}</span>
+              <span className="text-[13px] text-[#555] font-light leading-5">{b.desc}</span>
             </div>
           ))}
         </div>
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[12px] text-white/40 uppercase tracking-widest">How they wire together</div>
+          <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">How they wire together</div>
           <Code compact>
             {kw('const')} agent = {kw('new')} {hl('LlmAgent')}({'{'} name, model, instruction {'}'});{'\n'}
             {kw('const')} sessions = {kw('new')} {hl('InMemorySessionService')}();{'\n'}
@@ -558,16 +558,16 @@ function Slide07Recipe({ slideNumber }: SlideProps) {
             { n: '3', label: 'Run the Runner', desc: 'for await → events → output' },
           ].map((s) => (
             <div key={s.n} className="flex gap-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[14px] shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[14px] shrink-0">
                 {s.n}
               </div>
               <div>
-                <div className="text-[15px] text-white font-light">{s.label}</div>
-                <div className="text-[12px] text-white/40">{s.desc}</div>
+                <div className="text-[15px] text-[#111827] font-light">{s.label}</div>
+                <div className="text-[12px] text-[#9ca3af]">{s.desc}</div>
               </div>
             </div>
           ))}
-          <div className="mt-2 text-[12px] text-white/30">
+          <div className="mt-2 text-[12px] text-[#9ca3af]">
             Same recipe in every agent today — from hello-agent to lead-finder.
           </div>
         </div>
@@ -597,30 +597,30 @@ function Slide08InstructionContract({ slideNumber }: SlideProps) {
       <div className="flex gap-6 h-full items-center">
         <div className="flex-1 flex flex-col gap-4">
           <div className="bg-[#f87171]/10 border border-[#f87171]/30 rounded-lg p-4">
-            <div className="text-[12px] text-[#f87171] mb-2 uppercase tracking-widest">Without instruction</div>
-            <div className="text-[14px] text-white/60 font-light leading-6">
+            <div className="text-[12px] text-[#dc2626] mb-2 uppercase tracking-widest">Without instruction</div>
+            <div className="text-[14px] text-[#4b5563] font-light leading-6">
               "Hi! How can I help you today?"<br />
               "Sure, I'd be happy to assist..."<br />
-              <span className="text-white/30 italic">Generic. Unpredictable. Different every time.</span>
+              <span className="text-[#9ca3af] italic">Generic. Unpredictable. Different every time.</span>
             </div>
           </div>
           <div className="bg-[#4ade80]/10 border border-[#4ade80]/30 rounded-lg p-4">
-            <div className="text-[12px] text-[#4ade80] mb-2 uppercase tracking-widest">With instruction</div>
-            <div className="text-[14px] text-white/60 font-light leading-6">
+            <div className="text-[12px] text-[#16a34a] mb-2 uppercase tracking-widest">With instruction</div>
+            <div className="text-[14px] text-[#4b5563] font-light leading-6">
               The agent knows who it is, what it can do, how to respond.<br />
-              <span className="text-white/30 italic">Consistent. Predictable. A contract.</span>
+              <span className="text-[#9ca3af] italic">Consistent. Predictable. A contract.</span>
             </div>
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-4 justify-center">
-          <div className="text-[13px] text-white/40 uppercase tracking-widest">Try it yourself</div>
+          <div className="text-[13px] text-[#9ca3af] uppercase tracking-widest">Try it yourself</div>
           <Code>
             {cm('// Step 1: run as-is (instruction is empty)')}{'\n'}
             instruction: {st('""')}{'\n\n'}
             {cm('// Step 2: fill it in and compare the output')}{'\n'}
             instruction: {st('"You are an assistant..."')}
           </Code>
-          <div className="text-[13px] text-white/50 font-light leading-6">
+          <div className="text-[13px] text-[#6b7280] font-light leading-6">
             Without instruction the model behaves like a general-purpose chatbot.<br />
             Instruction is what makes the agent a specialist.
           </div>
@@ -635,7 +635,7 @@ function Slide08bZod({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Block 1" title="Zod — describing the shape of data" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-start pt-1">
         <div className="flex-1 flex flex-col gap-4">
-          <div className="text-[13px] text-white/60 font-light leading-6">
+          <div className="text-[13px] text-[#4b5563] font-light leading-6">
             Zod is a TypeScript schema library. You describe what shape your data should have — Zod validates it at runtime and infers the TypeScript types automatically.
           </div>
           <div className="flex flex-col gap-2.5">
@@ -647,15 +647,15 @@ function Slide08bZod({ slideNumber }: SlideProps) {
               <div key={b.label} className="flex gap-3 items-start">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#2a5ff5] mt-2 shrink-0" />
                 <div>
-                  <span className="text-[13px] text-white/80">{b.label}</span>
-                  <span className="text-[13px] text-white/40"> — {b.desc}</span>
+                  <span className="text-[13px] text-[#1f2937]">{b.label}</span>
+                  <span className="text-[13px] text-[#9ca3af]"> — {b.desc}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[12px] text-white/40 uppercase tracking-widest">Types you'll use in this workshop</div>
+          <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">Types you'll use in this workshop</div>
           <Code compact>
             z.object({'{'} city: z.string() {'}'})  {cm('// object with named fields')}{'\n'}
             z.string()                   {cm('// text value')}{'\n'}
@@ -664,8 +664,8 @@ function Slide08bZod({ slideNumber }: SlideProps) {
             z.optional(z.string())       {cm('// field can be absent')}{'\n'}
             z.string().describe({st('"the city name"')}) {cm('// hint for the model')}
           </Code>
-          <div className="text-[11px] text-white/25 leading-4">
-            The <span className="font-mono text-white/45">.describe()</span> hint goes into the JSON Schema — the model reads it to understand what value to put in that field.
+          <div className="text-[11px] text-[#d1d5db] leading-4">
+            The <span className="font-mono text-[#6b7280]">.describe()</span> hint goes into the JSON Schema — the model reads it to understand what value to put in that field.
           </div>
         </div>
       </div>
@@ -679,23 +679,23 @@ function Slide09FunctionTool({ slideNumber }: SlideProps) {
       <div className="flex gap-6 h-full">
         <div className="flex-1 flex flex-col gap-4 justify-center">
           <div className="flex items-center gap-3 text-[13px]">
-            <span className="bg-white/10 rounded px-3 py-2 text-white/60">"What's the weather in London?"</span>
+            <span className="bg-[#f0f4f8] rounded px-3 py-2 text-[#4b5563]">"What's the weather in London?"</span>
             <span className="text-[#2a5ff5]">→</span>
-            <span className="bg-[#a78bfa]/30 border border-[#a78bfa]/50 rounded px-3 py-2 text-[#c4b5fd]">Model decides</span>
+            <span className="bg-[#a78bfa]/30 border border-[#a78bfa]/50 rounded px-3 py-2 text-[#7c3aed]">Model decides</span>
           </div>
           <div className="flex items-center gap-3 text-[13px] pl-8">
             <span className="text-[#00c4b4]">↓ calls</span>
           </div>
           <div className="flex items-center gap-3 text-[13px]">
-            <span className="bg-[#00c4b4]/20 border border-[#00c4b4]/40 rounded px-3 py-2 text-[#5eead4]">getWeather("London")</span>
+            <span className="bg-[#00c4b4]/20 border border-[#00c4b4]/40 rounded px-3 py-2 text-[#0e7490]">getWeather("London")</span>
             <span className="text-[#00c4b4]">→</span>
-            <span className="bg-white/10 rounded px-3 py-2 text-white/60">{'{ tempC: 18, condition: "cloudy" }'}</span>
+            <span className="bg-[#f0f4f8] rounded px-3 py-2 text-[#4b5563]">{'{ tempC: 18, condition: "cloudy" }'}</span>
           </div>
           <div className="flex items-center gap-3 text-[13px] pl-8">
-            <span className="text-[#4ade80]">↓ result back to model</span>
+            <span className="text-[#16a34a]">↓ result back to model</span>
           </div>
           <div className="flex items-center gap-3 text-[13px]">
-            <span className="bg-[#4ade80]/10 border border-[#4ade80]/30 rounded px-3 py-2 text-[#86efac]">"London: 18°C, cloudy"</span>
+            <span className="bg-[#4ade80]/10 border border-[#4ade80]/30 rounded px-3 py-2 text-[#16a34a]">"London: 18°C, cloudy"</span>
           </div>
         </div>
         <div className="flex-1 flex flex-col justify-center gap-2">
@@ -714,8 +714,8 @@ function Slide09FunctionTool({ slideNumber }: SlideProps) {
             {cm('// attach to the agent:')}{'\n'}
             tools: [weatherTool],
           </Code>
-          <div className="text-[11px] text-white/30 leading-4">
-            <span className="font-mono text-white/50">z.object / z.string</span> — Zod is <span className="text-white/50">required by ADK</span>: it generates the JSON Schema sent to the model (so the model knows what arguments to pass) and validates them before <span className="font-mono text-white/50">execute</span> is called. Python ADK uses type hints instead — no Zod there.
+          <div className="text-[11px] text-[#9ca3af] leading-4">
+            <span className="font-mono text-[#6b7280]">z.object / z.string</span> — Zod is <span className="text-[#6b7280]">required by ADK</span>: it generates the JSON Schema sent to the model (so the model knows what arguments to pass) and validates them before <span className="font-mono text-[#6b7280]">execute</span> is called. Python ADK uses type hints instead — no Zod there.
           </div>
         </div>
       </div>
@@ -728,12 +728,12 @@ function Slide10WriteBlock1({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Block 1 · Hands-on" title="Tasks 1.1 and 1.2" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-4 h-full">
         <div className="flex gap-4">
-          <div className="flex-1 bg-white/[0.04] rounded-lg p-4 flex flex-col gap-2">
+          <div className="flex-1 bg-[#f5f7fa] rounded-lg p-4 flex flex-col gap-2">
             <Tag color="#2a5ff5">1.1 · hello-agent.ts</Tag>
             <Bullet>Run with empty instruction — see what it outputs</Bullet>
             <Bullet>Fill in instruction and question — compare the difference</Bullet>
           </div>
-          <div className="flex-1 bg-white/[0.04] rounded-lg p-4 flex flex-col gap-2">
+          <div className="flex-1 bg-[#f5f7fa] rounded-lg p-4 flex flex-col gap-2">
             <Tag color="#00c4b4">1.2 · tool-agent.ts</Tag>
             <Bullet>Write a FunctionTool with fake weather data</Bullet>
             <Bullet>Remove tool from tools:[] — agent will guess. Add it back.</Bullet>
@@ -771,27 +771,27 @@ function Slide12OneVsMany({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Block 2 · Key moment" title="One agent vs many" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-stretch">
         <div className="flex-1 flex flex-col gap-3 bg-[#f87171]/5 border border-[#f87171]/20 rounded-lg p-5">
-          <div className="text-[13px] text-[#f87171] uppercase tracking-widest">Option A — one prompt</div>
+          <div className="text-[13px] text-[#dc2626] uppercase tracking-widest">Option A — one prompt</div>
           <Code>
             instruction:{'\n'}
             {st('"Find leads + write offers + validate"')}{'\n'}
             {cm('// single LlmAgent does everything')}
           </Code>
-          <div className="flex-1 text-[13px] text-white/50 font-light leading-6">
+          <div className="flex-1 text-[13px] text-[#6b7280] font-light leading-6">
             The model optimizes ALL tasks at once — and compromises on each.
             The validator can't criticize what it just wrote itself.
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-3 bg-[#4ade80]/5 border border-[#4ade80]/20 rounded-lg p-5">
-          <div className="text-[13px] text-[#4ade80] uppercase tracking-widest">Option B — three agents</div>
+          <div className="text-[13px] text-[#16a34a] uppercase tracking-widest">Option B — three agents</div>
           <Code>
             {hl('SequentialAgent')}:{'\n'}
             analyst {ok('→')} copywriter {ok('→')} validator{'\n'}
             {cm('// each optimizes one task')}
           </Code>
-          <div className="flex-1 text-[13px] text-white/50 font-light leading-6">
+          <div className="flex-1 text-[13px] text-[#6b7280] font-light leading-6">
             Each agent approaches the task fresh.<br />
-            <span className="text-white/70">
+            <span className="text-[#374151]">
               "A model in one prompt compromises on each task.
               Three agents each optimize a single task."
             </span>
@@ -840,15 +840,15 @@ function Slide14WriteBlock2({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Block 2 · Hands-on" title="Task 1.3 — SequentialAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-3 h-full">
         <div className="flex gap-3">
-          <div className="flex-1 bg-white/[0.04] rounded-lg p-3 flex flex-col gap-1.5">
+          <div className="flex-1 bg-[#f5f7fa] rounded-lg p-3 flex flex-col gap-1.5">
             <Tag color="#a78bfa">researcher</Tag>
-            <div className="text-[13px] text-white/60 font-light">receives topic</div>
+            <div className="text-[13px] text-[#4b5563] font-light">receives topic</div>
             <div className="text-[13px] text-[#00c4b4] font-mono">{'→ { "facts": ["...", "...", "..."] }'}</div>
-            <div className="text-[12px] text-white/30">strict JSON, no surrounding text</div>
+            <div className="text-[12px] text-[#9ca3af]">strict JSON, no surrounding text</div>
           </div>
-          <div className="flex-1 bg-white/[0.04] rounded-lg p-3 flex flex-col gap-1.5">
+          <div className="flex-1 bg-[#f5f7fa] rounded-lg p-3 flex flex-col gap-1.5">
             <Tag color="#4ade80">editor</Tag>
-            <div className="text-[13px] text-white/60 font-light">receives facts</div>
+            <div className="text-[13px] text-[#4b5563] font-light">receives facts</div>
             <div className="text-[13px] text-[#00c4b4] font-mono">→ one paragraph in prose</div>
           </div>
         </div>
@@ -857,7 +857,7 @@ function Slide14WriteBlock2({ slideNumber }: SlideProps) {
           {cm('# → [researcher] { "facts": [...] }')}{'\n'}
           {cm('# → [editor] "Quantum computers..."')}
         </Code>
-        <div className="text-[12px] text-white/30">
+        <div className="text-[12px] text-[#9ca3af]">
           Bonus (1.4): ParallelAgent — both agents at the same time, measure with console.time
         </div>
         <ActivityTimer minutes={15} />
@@ -885,7 +885,7 @@ function Slide16LeadFinderArch({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Block 3" title="Same architecture — new data" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-start pt-2">
         <div className="flex-1 flex flex-col gap-4 justify-center">
-          <div className="text-[13px] text-white/40 mb-1">Not new architecture — the same SequentialAgent from Block 2, three agents instead of two</div>
+          <div className="text-[13px] text-[#9ca3af] mb-1">Not new architecture — the same SequentialAgent from Block 2, three agents instead of two</div>
           <div className="flex flex-col gap-2">
             {[
               { name: 'analyst', role: 'picks top-3 leads by ICP from comments', color: '#2a5ff5' },
@@ -893,7 +893,7 @@ function Slide16LeadFinderArch({ slideNumber }: SlideProps) {
               { name: 'validator', role: 'rejects templated ones, rewrites them', color: '#00c4b4' },
             ].map((a, i) => (
               <div key={a.name} className="flex items-center gap-3">
-                {i > 0 && <div className="w-4 text-white/20 text-center">↓</div>}
+                {i > 0 && <div className="w-4 text-[#d1d5db] text-center">↓</div>}
                 {i === 0 && <div className="w-4" />}
                 <div
                   className="rounded-lg px-4 py-2 text-[13px] font-mono shrink-0"
@@ -901,16 +901,16 @@ function Slide16LeadFinderArch({ slideNumber }: SlideProps) {
                 >
                   [{a.name}]
                 </div>
-                <div className="text-[13px] text-white/50 font-light">{a.role}</div>
+                <div className="text-[13px] text-[#6b7280] font-light">{a.role}</div>
               </div>
             ))}
           </div>
-          <div className="text-[12px] text-white/30 mt-2">
+          <div className="text-[12px] text-[#9ca3af] mt-2">
             outputKey + {'{'}topLeads{'}'} in instruction — agents pass data via state, not the full conversation history
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-3 justify-center">
-          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">New in this block</div>
+          <div className="text-[13px] text-[#9ca3af] uppercase tracking-widest mb-1">New in this block</div>
           <Bullet>
             <span className="text-[#fbbf24]">pickComments()</span> — same toggle pattern as pickModel().<br />
             One variant = FAKE_COMMENTS, other = real API
@@ -931,14 +931,14 @@ function Slide17DemoChecklist({ slideNumber }: SlideProps) {
           { n: '2', text: 'Uncomment the portal fetch in pickComments()' },
           { n: '3', text: 'Run the same command — same three agents, but real leads in the output' },
         ].map((s) => (
-          <div key={s.n} className="flex gap-4 items-start bg-white/[0.03] rounded-lg px-4 py-3">
-            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">
+          <div key={s.n} className="flex gap-4 items-start bg-[#f8fafc] rounded-lg px-4 py-3">
+            <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">
               {s.n}
             </div>
-            <div className="text-[14px] text-white/70 font-light leading-6">{s.text}</div>
+            <div className="text-[14px] text-[#374151] font-light leading-6">{s.text}</div>
           </div>
         ))}
-        <div className="text-[13px] text-white/30 font-light mt-2">
+        <div className="text-[13px] text-[#9ca3af] font-light mt-2">
           Result: leads_result.json a second time — about different, real people. Not a line changed in the three agents.
         </div>
       </div>
@@ -956,9 +956,9 @@ function Slide18WriteBlock3({ slideNumber }: SlideProps) {
             { step: 'Step 2', desc: 'Fill in instruction with the JSON contract — run again, see the difference', color: '#fbbf24' },
             { step: 'Step 3', desc: 'Add copywriter and validator, confirm leads_result.json is saved', color: '#4ade80' },
           ].map((s) => (
-            <div key={s.step} className="flex-1 bg-white/[0.03] rounded-lg p-3 flex flex-col gap-1">
+            <div key={s.step} className="flex-1 bg-[#f8fafc] rounded-lg p-3 flex flex-col gap-1">
               <div className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: s.color }}>{s.step}</div>
-              <div className="text-[12px] text-white/55 font-light leading-5">{s.desc}</div>
+              <div className="text-[12px] text-[#555] font-light leading-5">{s.desc}</div>
             </div>
           ))}
         </div>
@@ -969,7 +969,7 @@ function Slide18WriteBlock3({ slideNumber }: SlideProps) {
           {cm('# → [validator] { "offers": [...] }')}{'\n'}
           {cm('# → 💾 Saved: leads_result.json')}
         </Code>
-        <div className="text-[12px] text-white/30">
+        <div className="text-[12px] text-[#9ca3af]">
           Experiment: change ICP and run again — different people from the same comments
         </div>
         <ActivityTimer minutes={17} />
@@ -994,7 +994,7 @@ function Slide19AdkWeb({ slideNumber }: SlideProps) {
           </div>
         </div>
         <div className="flex-1 flex flex-col justify-center gap-3">
-          <div className="bg-white/[0.04] rounded-lg p-4 text-[13px] text-white/50 font-light leading-6">
+          <div className="bg-[#f5f7fa] rounded-lg p-4 text-[13px] text-[#6b7280] font-light leading-6">
             adk web = the same agent behind an HTTP endpoint.<br />
             In Close, n8n will hit exactly this endpoint — no new code, same agent.
           </div>
@@ -1022,30 +1022,30 @@ function Slide21OwnAgentAssignment({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Block 4" title="Assignment" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-5 pt-2">
-        <div className="text-center py-4 bg-white/[0.04] rounded-xl border border-white/10">
-          <div className="text-[22px] text-white font-light leading-relaxed">
+        <div className="text-center py-4 bg-[#f5f7fa] rounded-xl border border-[#e5e7eb]">
+          <div className="text-[22px] text-[#111827] font-light leading-relaxed">
             Take a task from your work<br />that you do manually.<br />
             <span className="text-[#2a5ff5]">Write an agent.</span>
           </div>
         </div>
         <div className="flex gap-4">
           <div className="flex-1 flex flex-col gap-2">
-            <div className="text-[12px] text-white/30 uppercase tracking-widest">How to pick a task</div>
+            <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">How to pick a task</div>
             <Bullet>Recurring, not one-off</Bullet>
             <Bullet>Clear input and expected output</Bullet>
             <Bullet>Narrow — small enough to fit in 15 minutes</Bullet>
-            <div className="text-[12px] text-white/30 mt-2">
+            <div className="text-[12px] text-[#9ca3af] mt-2">
               Stuck? "Three things I do manually every week and hate."
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-2">
-            <div className="text-[12px] text-white/30 uppercase tracking-widest">Your toolkit</div>
+            <div className="text-[12px] text-[#9ca3af] uppercase tracking-widest">Your toolkit</div>
             <div className="text-[14px] font-mono text-[#2a5ff5]">LlmAgent</div>
-            <div className="text-[13px] text-white/40 font-light -mt-1">model + instruction — enough for most tasks</div>
+            <div className="text-[13px] text-[#9ca3af] font-light -mt-1">model + instruction — enough for most tasks</div>
             <div className="text-[14px] font-mono text-[#00c4b4] mt-1">FunctionTool</div>
-            <div className="text-[13px] text-white/40 font-light -mt-1">if the agent needs an external tool</div>
+            <div className="text-[13px] text-[#9ca3af] font-light -mt-1">if the agent needs an external tool</div>
             <div className="text-[14px] font-mono text-[#a78bfa] mt-1">SequentialAgent</div>
-            <div className="text-[13px] text-white/40 font-light -mt-1">if the task splits into clear steps</div>
+            <div className="text-[13px] text-[#9ca3af] font-light -mt-1">if the task splits into clear steps</div>
           </div>
         </div>
         <Code>
@@ -1061,17 +1061,17 @@ function Slide22WriteBlock4({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Block 4 · Hands-on" title="Your Agent — 15 minutes" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-5 h-full justify-center">
-        <div className="text-[15px] text-white/60 font-light leading-7">
+        <div className="text-[15px] text-[#4b5563] font-light leading-7">
           No skeleton. No instructions. No right answer.<br />
           Just your task and what you already know.
         </div>
         <div className="flex gap-3">
-          <div className="flex-1 bg-white/[0.03] rounded-lg p-4 text-[13px] text-white/50 font-light leading-6">
-            <span className="text-white/80">Helping frame the task</span> matters more than helping with code.
+          <div className="flex-1 bg-[#f8fafc] rounded-lg p-4 text-[13px] text-[#6b7280] font-light leading-6">
+            <span className="text-[#1f2937]">Helping frame the task</span> matters more than helping with code.
             The facilitator helps find the right input/output — not syntax.
           </div>
-          <div className="flex-1 bg-white/[0.03] rounded-lg p-4 text-[13px] text-white/50 font-light leading-6">
-            <span className="text-white/80">pickModel()</span> works the same as everywhere —
+          <div className="flex-1 bg-[#f8fafc] rounded-lg p-4 text-[13px] text-[#6b7280] font-light leading-6">
+            <span className="text-[#1f2937]">pickModel()</span> works the same as everywhere —
             one line to switch the provider.
           </div>
         </div>
@@ -1107,16 +1107,16 @@ function Slide24ClosePipeline({ slideNumber }: SlideProps) {
             { label: 'n8n', desc: 'Sort → Set — groups and formats the final list', color: '#00c4b4', tag: 'orchestration' },
           ].map((s, i) => (
             <div key={s.label} className="flex flex-col items-start w-full">
-              {i > 0 && <div className="text-white/20 ml-5 text-lg leading-4">↓</div>}
-              <div className="flex items-center gap-3 bg-white/[0.04] rounded-lg px-4 py-2.5 w-full">
+              {i > 0 && <div className="text-[#d1d5db] ml-5 text-lg leading-4">↓</div>}
+              <div className="flex items-center gap-3 bg-[#f5f7fa] rounded-lg px-4 py-2.5 w-full">
                 <span className="font-mono text-[14px] shrink-0" style={{ color: s.color }}>[{s.label}]</span>
-                <span className="text-[13px] text-white/60 font-light flex-1">{s.desc}</span>
-                <span className="text-[11px] bg-white/5 px-2 py-0.5 rounded text-white/30">{s.tag}</span>
+                <span className="text-[13px] text-[#4b5563] font-light flex-1">{s.desc}</span>
+                <span className="text-[11px] bg-white/5 px-2 py-0.5 rounded text-[#9ca3af]">{s.tag}</span>
               </div>
             </div>
           ))}
         </div>
-        <div className="text-[13px] text-white/40 font-light mt-1">
+        <div className="text-[13px] text-[#9ca3af] font-light mt-1">
           Two independent ADK agents behind two HTTP endpoints (adk web). n8n calls both in sequence — orchestration in n8n, not new TypeScript code.
         </div>
       </div>
@@ -1166,14 +1166,14 @@ function Slide26N8nDemo({ slideNumber }: SlideProps) {
           { n: '2', text: 'planner picks channel → portal delivers data → lead-finder runs 3 agents → n8n sorts' },
           { n: '3', text: 'Final list — the same mechanics the participants just wrote by hand, without a single click' },
         ].map((s) => (
-          <div key={s.n} className="flex gap-4 items-start bg-white/[0.03] rounded-lg px-4 py-3">
-            <div className="w-7 h-7 rounded-full bg-[#00c4b4]/20 border border-[#00c4b4]/40 flex items-center justify-center text-[#5eead4] font-bold text-[13px] shrink-0">
+          <div key={s.n} className="flex gap-4 items-start bg-[#f8fafc] rounded-lg px-4 py-3">
+            <div className="w-7 h-7 rounded-full bg-[#00c4b4]/20 border border-[#00c4b4]/40 flex items-center justify-center text-[#0e7490] font-bold text-[13px] shrink-0">
               {s.n}
             </div>
-            <div className="text-[14px] text-white/70 font-light leading-6">{s.text}</div>
+            <div className="text-[14px] text-[#374151] font-light leading-6">{s.text}</div>
           </div>
         ))}
-        <div className="bg-white/[0.04] rounded-lg p-4 text-[14px] text-white/60 font-light leading-6 italic mt-2">
+        <div className="bg-[#f5f7fa] rounded-lg p-4 text-[14px] text-[#4b5563] font-light leading-6 italic mt-2">
           "None of this is new code — planner is the same LlmAgent as everything today,
           lead-finder is what you just built."
         </div>
@@ -1186,13 +1186,13 @@ function Slide27Question({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Close" title="Question for the room" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col h-full items-center justify-center gap-8">
-        <div className="text-center bg-white/[0.04] rounded-xl border border-white/10 px-12 py-8">
-          <div className="text-[20px] text-white font-light leading-8">
+        <div className="text-center bg-[#f5f7fa] rounded-xl border border-[#e5e7eb] px-12 py-8">
+          <div className="text-[20px] text-[#111827] font-light leading-8">
             What would you automate first<br />
             <span className="text-[#2a5ff5]">with a pipeline like this behind an HTTP endpoint?</span>
           </div>
         </div>
-        <div className="text-[14px] text-white/30 font-light">
+        <div className="text-[14px] text-[#9ca3af] font-light">
           Quick round: go around the room, briefly — <em>"What surprised you?"</em>
         </div>
       </div>

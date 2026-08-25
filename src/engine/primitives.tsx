@@ -2,18 +2,14 @@ import type { ReactNode } from 'react'
 
 export const Gradient = 'bg-gradient-to-br from-[#6a1fc2] via-[#2a5ff5] to-[#00c4b4]'
 
-export function Footer({ n, light, label }: { n: number; light?: boolean; label?: string }) {
+export function Footer({ n, label }: { n: number; light?: boolean; label?: string }) {
   return (
-    <div
-      className={`absolute bottom-0 left-0 right-0 h-9 flex items-center justify-between px-5 ${
-        light ? 'bg-white' : ''
-      }`}
-    >
-      <span className={`text-[10px] uppercase tracking-widest ${light ? 'text-[#aaa]' : 'text-white/40'}`}>
+    <div className="absolute bottom-0 left-0 right-0 h-9 flex items-center justify-between px-5">
+      <span className="text-[10px] uppercase tracking-widest text-[#aaa]">
         {label ?? ''}
       </span>
-      <span className={`text-xs flex items-center gap-1 ${light ? 'text-[#888]' : 'text-white/60'}`}>
-        <span className={`w-3.5 h-3.5 rounded-sm ${light ? 'bg-[#ddd]' : 'bg-white/20'}`} />
+      <span className="text-xs flex items-center gap-1 text-[#888]">
+        <span className="w-3.5 h-3.5 rounded-sm bg-[#ddd]" />
         {n}
       </span>
     </div>
@@ -21,16 +17,16 @@ export function Footer({ n, light, label }: { n: number; light?: boolean; label?
 }
 
 // Syntax-highlight helpers for inline code snippets — wrap tokens by role.
-export const kw = (s: string) => <span className="text-[#2a5ff5]">{s}</span>
-export const st = (s: string) => <span className="text-[#00c4b4]">{s}</span>
-export const cm = (s: string) => <span className="text-white/40">{s}</span>
-export const hl = (s: string) => <span className="text-[#a78bfa]">{s}</span>
-export const ok = (s: string) => <span className="text-[#4ade80]">{s}</span>
-export const er = (s: string) => <span className="text-[#f87171]">{s}</span>
+export const kw = (s: string) => <span className="text-[#1a56cc]">{s}</span>
+export const st = (s: string) => <span className="text-[#0e7490]">{s}</span>
+export const cm = (s: string) => <span className="text-[#9ca3af]">{s}</span>
+export const hl = (s: string) => <span className="text-[#7c3aed]">{s}</span>
+export const ok = (s: string) => <span className="text-[#16a34a]">{s}</span>
+export const er = (s: string) => <span className="text-[#dc2626]">{s}</span>
 
 export function Code({ children, compact }: { children: ReactNode; compact?: boolean }) {
   return (
-    <pre className={`bg-black/40 rounded-lg font-mono overflow-hidden text-white/85 ${compact ? 'p-3 text-[12px] leading-5' : 'p-4 text-[13px] leading-6'}`}>
+    <pre className={`bg-[#f1f5f9] rounded-lg font-mono overflow-hidden text-[#1e293b] ${compact ? 'p-3 text-[12px] leading-5' : 'p-4 text-[13px] leading-6'}`}>
       <code>{children}</code>
     </pre>
   )
@@ -51,11 +47,11 @@ export function ContentSlide({
   children: ReactNode
 }) {
   return (
-    <div className="w-full h-full flex flex-col px-12 pt-9 pb-14 bg-[#0d0d12]">
+    <div className="w-full h-full flex flex-col px-12 pt-9 pb-14 bg-white">
       {eyebrow && (
-        <div className="text-[11px] text-white/40 uppercase tracking-widest mb-1">{eyebrow}</div>
+        <div className="text-[11px] text-[#9ca3af] uppercase tracking-widest mb-1">{eyebrow}</div>
       )}
-      <h2 className="text-[26px] font-light text-white mb-8 border-l-[3px] border-[#2a5ff5] pl-3">
+      <h2 className="text-[26px] font-light text-[#111827] mb-8 border-l-[3px] border-[#1a73e8] pl-3">
         {title}
       </h2>
       <div className="flex-1 min-h-0 overflow-hidden">{children}</div>
@@ -79,11 +75,11 @@ export function SectionSlide({
   footerLabel?: string
 }) {
   return (
-    <div className={`w-full h-full flex items-center justify-center ${Gradient}`}>
-      <div className="bg-white/95 rounded-lg px-16 py-10 text-center min-w-[55%]">
-        <div className="text-[11px] text-[#888] tracking-widest mb-2">{eyebrow}</div>
-        <h2 className="text-[32px] font-light text-[#1a3a6b] mb-3">{title}</h2>
-        {subtitle && <p className="text-[16px] text-[#555]">{subtitle}</p>}
+    <div className="w-full h-full flex items-center justify-center bg-[#f8fafc]">
+      <div className="bg-white rounded-xl px-16 py-10 text-center min-w-[55%] border border-[#e5e7eb]" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+        <div className="text-[11px] text-[#9ca3af] tracking-widest mb-2">{eyebrow}</div>
+        <h2 className="text-[32px] font-light text-[#111827] mb-3">{title}</h2>
+        {subtitle && <p className="text-[16px] text-[#6b7280]">{subtitle}</p>}
       </div>
       <Footer n={slideNumber} label={footerLabel} />
     </div>
