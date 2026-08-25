@@ -262,7 +262,7 @@ export function PresentationApp({
   }))
 
   return (
-    <div className="bg-[#1a1a2e] min-h-screen flex items-start justify-center">
+    <div className="bg-white min-h-screen flex items-start justify-center">
       <div ref={presRef} style={{ width: 900 }}>
         {/* Timer bar */}
         <div className="bg-[#0a0a10] px-3 py-1.5 flex items-center gap-3 border-b border-white/5">
@@ -364,7 +364,7 @@ export function PresentationApp({
           >
             ← Prev
           </button>
-          <span className="text-sm text-[#aaa]">
+          <span className="text-sm text-[#374151]">
             {current + 1} / {total}
           </span>
           <button
@@ -377,13 +377,13 @@ export function PresentationApp({
 
         <div className="pb-4 text-[11px] text-center">
           {!isGamepadActivated ? (
-            <span className="text-white/35">Press any button on the controller to activate gamepad controls.</span>
+            <span className="text-[#9ca3af]">Press any button on the controller to activate gamepad controls.</span>
           ) : isGamepadConnected ? (
-            <span className="text-[#7dd3fc]">
+            <span className="text-[#1a73e8]">
               Gamepad controls active: RB next slide, LB previous slide, A/START start/pause/resume timer, B reset.
             </span>
           ) : (
-            <span className="text-white/25">Gamepad disconnected. Keyboard and mouse controls remain available.</span>
+            <span className="text-[#d1d5db]">Gamepad disconnected. Keyboard and mouse controls remain available.</span>
           )}
         </div>
       </div>

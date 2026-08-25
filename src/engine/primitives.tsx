@@ -107,23 +107,23 @@ export function TitleSlide({
   footerLabel?: string
 }) {
   return (
-    <div className={`w-full h-full flex flex-col ${Gradient}`}>
+    <div className="w-full h-full flex flex-col bg-white">
       <div className="flex flex-1 px-12 pt-10 pb-4 gap-12">
         <div className="flex flex-col justify-center flex-1 gap-4">
           {eyebrow && (
-            <div className="text-[11px] text-white/50 uppercase tracking-widest">{eyebrow}</div>
+            <div className="text-[11px] text-[#9ca3af] uppercase tracking-widest">{eyebrow}</div>
           )}
-          <h1 className="text-[38px] font-light text-white leading-tight">{title}</h1>
-          {subtitle && <div className="text-[14px] text-white/60 font-light">{subtitle}</div>}
+          <h1 className="text-[38px] font-light text-[#111827] leading-tight">{title}</h1>
+          {subtitle && <div className="text-[14px] text-[#6b7280] font-light">{subtitle}</div>}
         </div>
 
         {(speakerName || speakerRole || speakerLinks) && (
           <div className="flex flex-col justify-center gap-3" style={{ minWidth: 220 }}>
             {speakerName && (
-              <div className="text-[22px] font-semibold text-white leading-tight">{speakerName}</div>
+              <div className="text-[22px] font-semibold text-[#111827] leading-tight">{speakerName}</div>
             )}
-            {speakerRole && <div className="text-[13px] text-white/80 leading-5">{speakerRole}</div>}
-            {speakerLinks && <div className="text-[12px] text-white/50 leading-5">{speakerLinks}</div>}
+            {speakerRole && <div className="text-[13px] text-[#4b5563] leading-5">{speakerRole}</div>}
+            {speakerLinks && <div className="text-[12px] text-[#6b7280] leading-5">{speakerLinks}</div>}
           </div>
         )}
       </div>
