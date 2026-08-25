@@ -483,6 +483,44 @@ function Slide06Block1Section({ slideNumber }: SlideProps) {
   )
 }
 
+function Slide06bAdkConcepts({ slideNumber }: SlideProps) {
+  const blocks = [
+    { name: 'LlmAgent', color: '#2a5ff5', desc: 'Defines who the agent is — name, model, instruction, tools.' },
+    { name: 'Runner', color: '#a78bfa', desc: 'Orchestrates the loop: sends messages, triggers tool calls, streams output.' },
+    { name: 'SessionService', color: '#00c4b4', desc: 'Stores conversation history so the agent remembers previous turns.' },
+    { name: 'Events', color: '#4ade80', desc: 'What runAsync yields — text chunks, tool results, or error messages.' },
+  ]
+  return (
+    <ContentSlide eyebrow="Block 1" title="ADK: 4 building blocks" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex gap-6 h-full items-start pt-1">
+        <div className="flex-1 flex flex-col gap-2">
+          {blocks.map((b) => (
+            <div key={b.name} className="flex items-start gap-3 bg-white/[0.03] rounded-lg px-4 py-2.5">
+              <span className="font-mono text-[13px] font-semibold shrink-0 w-36" style={{ color: b.color }}>{b.name}</span>
+              <span className="text-[13px] text-white/55 font-light leading-5">{b.desc}</span>
+            </div>
+          ))}
+        </div>
+        <div className="flex-1 flex flex-col gap-3">
+          <div className="text-[12px] text-white/40 uppercase tracking-widest">How they wire together</div>
+          <Code compact>
+            {kw('const')} agent = {kw('new')} {hl('LlmAgent')}({'{'} name, model, instruction {'}'});{'\n'}
+            {kw('const')} sessions = {kw('new')} {hl('InMemorySessionService')}();{'\n'}
+            {kw('const')} runner = {kw('new')} {hl('Runner')}({'{'} agent, appName, sessions {'}'});{'\n\n'}
+            {kw('const')} session = {kw('await')} sessions.createSession(...);{'\n\n'}
+            {kw('for await')} ({kw('const')} event {kw('of')} runner.{hl('runAsync')}({'{'}{'\n'}
+            {'  '}userId, sessionId: session.id, newMessage,{'\n'}
+            {'}'})) {'{'}{'\n'}
+            {'  '}{cm('// event.content  — text from the model')}{'\n'}
+            {'  '}{cm('// event.errorMessage — something went wrong')}{'\n'}
+            {'}'}
+          </Code>
+        </div>
+      </div>
+    </ContentSlide>
+  )
+}
+
 function Slide07Recipe({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Block 1" title="Recipe: Any LlmAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
@@ -1107,6 +1145,7 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
   { Component: Slide05dKitanaSetup },
   // Block 1 (6–11)
   { Component: Slide06Block1Section },
+  { Component: Slide06bAdkConcepts },
   { Component: Slide07Recipe },
   { Component: Slide08InstructionContract },
   { Component: Slide09FunctionTool },
@@ -1146,6 +1185,7 @@ export const EXAMPLE_CUE_POINTS_SEC = [
   560,   // 05c Gemini free tier setup
   580,   // 05d Kitana setup
   600,   // 06 Block 1 section      ← 10 min mark
+  660,   // 06b ADK building blocks
   720,   // 07 Recipe (live coding)
   900,   // 08 instruction = contract (live)
   1020,  // 09 FunctionTool (live)
