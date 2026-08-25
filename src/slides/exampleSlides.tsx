@@ -450,7 +450,7 @@ function Slide05dKitanaSetup({ slideNumber }: SlideProps) {
         </div>
         <div className="flex-1 flex flex-col gap-3">
           <div className="text-[12px] text-white/40 uppercase tracking-widest">Verify it works</div>
-          <Code compact>npx tsx examples/check-kitana.ts</Code>
+          <Code compact>npm run check-kitana</Code>
           <div className="flex flex-col gap-1 bg-black/40 rounded-lg px-3 py-2.5 font-mono text-[11px] leading-5">
             <span className="text-white/40">1) Checking Claude CLI...</span>
             <span className="text-[#4ade80]">   ✓ claude 1.x.x</span>
