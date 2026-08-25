@@ -187,6 +187,32 @@ function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
   )
 }
 
+function Slide02bAgentLimits({ slideNumber }: SlideProps) {
+  const items = [
+    { label: 'Selective Amnesia', desc: 'Forgets the code it already wrote, so it writes it again.' },
+    { label: 'Library Aversion', desc: 'Hand-rolls things that already exist as libraries.' },
+    { label: 'Deletion Phobia', desc: "Won't delete, so dead code accumulates." },
+    { label: 'The Complexity Spiral', desc: 'Patches rather than refactors, so complexity compounds.' },
+  ]
+  return (
+    <ContentSlide eyebrow="Intro · Reality check" title="Four things agents reliably do" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex flex-col gap-3 h-full">
+        <div className="grid grid-cols-2 gap-3 flex-1">
+          {items.map((item) => (
+            <div key={item.label} className="bg-white/[0.04] rounded-lg p-5 flex flex-col gap-2">
+              <div className="text-[13px] font-semibold uppercase tracking-widest text-white/80">{item.label}</div>
+              <div className="text-[13px] text-white/45 font-light leading-6">{item.desc}</div>
+            </div>
+          ))}
+        </div>
+        <div className="text-[10px] text-white/20 text-center leading-4">
+          Source: SlopCodeBench by Snorkel AI · agents given sequential feature requests on one codebase, code inspected after every task · these four patterns recurred
+        </div>
+      </div>
+    </ContentSlide>
+  )
+}
+
 function Slide03AgentLoop({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Intro · Part 1" title="Agent Loop" slideNumber={slideNumber} footerLabel={FOOTER}>
@@ -1180,6 +1206,7 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
   // Intro (0–6)
   { Component: Slide01Title },
   { Component: Slide02WhatIsAgent },
+  { Component: Slide02bAgentLimits },
   { Component: Slide01bRawDemo },
   { Component: Slide03AgentLoop },
   { Component: Slide04WhyAdk },
@@ -1222,6 +1249,7 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
 export const EXAMPLE_CUE_POINTS_SEC = [
   0,     // 01 Title
   20,    // 02 What is agent (three levels — theory first)
+  55,    // 02b Agent limits (reality check)
   90,    // 01b Raw demo (claude -p live — after theory)
   150,   // 03 Agent loop
   330,   // 04 Why ADK
