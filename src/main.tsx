@@ -7,6 +7,6 @@ createRoot(document.getElementById('root')!).render(
   <PresentationApp
     slides={EXAMPLE_SLIDES}
     cuePointsSec={EXAMPLE_CUE_POINTS_SEC}
-    durationSec={2 * 60 * 60}
+    durationSec={165 * 60}
   />,
 )
