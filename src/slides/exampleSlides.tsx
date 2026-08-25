@@ -939,8 +939,8 @@ function Slide27Question({ slideNumber }: SlideProps) {
 export const EXAMPLE_SLIDES: SlideDef[] = [
   // Intro (0–6)
   { Component: Slide01Title },
-  { Component: Slide01bRawDemo },
   { Component: Slide02WhatIsAgent },
+  { Component: Slide01bRawDemo },
   { Component: Slide03AgentLoop },
   { Component: Slide04WhyAdk },
   { Component: Slide05Plan },
@@ -976,8 +976,8 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
 // Cue points in seconds from talk start (total ~165 min = 9900s)
 export const EXAMPLE_CUE_POINTS_SEC = [
   0,     // 01 Title
-  20,    // 01b Raw demo (claude -p live)
-  90,    // 02 What is agent
+  20,    // 02 What is agent (three levels — theory first)
+  90,    // 01b Raw demo (claude -p live — after theory)
   150,   // 03 Agent loop
   330,   // 04 Why ADK
   480,   // 05 Plan
