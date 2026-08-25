@@ -53,7 +53,7 @@ function ActivityTimer({ minutes }: { minutes: number }) {
   return (
     <div className="flex items-center gap-3 bg-black/30 rounded-lg px-4 py-2.5">
       <span className="text-[13px] text-white/50 font-light shrink-0">
-        {done ? '✓ время вышло' : started ? 'осталось' : 'старт через 1с…'}
+        {done ? "✓ time's up" : started ? 'remaining' : 'starts in 1s…'}
       </span>
       <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
         <div
@@ -78,7 +78,7 @@ function Slide01Title({ slideNumber }: SlideProps) {
     <TitleSlide
       eyebrow="Workshop · 2026"
       title="Build AI Agents from Scratch"
-      subtitle="Google ADK · Kitana · n8n · ~2h 45min"
+      subtitle="Google ADK · n8n · ~2h 45min"
       speakerName="Andrei Tazetdinov"
       speakerRole="Dynatrace"
       slideNumber={slideNumber}
@@ -103,7 +103,7 @@ function Slide01bRawDemo({ slideNumber }: SlideProps) {
             {cm('# What the script does — 3 lines:')}{'\n'}
             {kw('claude')} -p {st('"What is an AI agent? One sentence."')} {'\n'}
             {'  '}| tee answer.txt{'\n\n'}
-            {cm('# That\'s it. Prompt in → answer out → saved to file.')}
+            {cm("# That's it. Prompt in → answer out → saved to file.")}
           </Code>
         </div>
         <div className="flex-1 flex flex-col gap-4 justify-center">
@@ -119,10 +119,6 @@ function Slide01bRawDemo({ slideNumber }: SlideProps) {
             model decides → tool call → result back → repeat<br />
             until the model says it's done.
           </div>
-          <div className="bg-white/[0.04] rounded-lg px-4 py-3 text-[12px] text-white/30 leading-5">
-            Same <span className="text-[#00c4b4] font-mono">claude</span> CLI that powers Kitana —
-            so if you switched to Kitana in Block 1, this already worked under the hood.
-          </div>
         </div>
       </div>
     </ContentSlide>
@@ -131,30 +127,30 @@ function Slide01bRawDemo({ slideNumber }: SlideProps) {
 
 function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Intro · Part 1" title="Три уровня работы с LLM" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Intro · Part 1" title="Three Levels of LLM Usage" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-4 h-full">
         {/* Level 1 */}
         <div className="flex-1 flex flex-col gap-2 bg-white/[0.04] rounded-lg p-4">
-          <Tag color="#4ade80">Один вызов</Tag>
-          <div className="text-[13px] text-white/50 font-light">Вопрос → ответ</div>
+          <Tag color="#4ade80">Single Call</Tag>
+          <div className="text-[13px] text-white/50 font-light">Question → answer</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-2">
-              <span className="bg-white/10 rounded px-2 py-1 text-white/70">Вход</span>
+              <span className="bg-white/10 rounded px-2 py-1 text-white/70">Input</span>
               <span className="text-white/30">→</span>
               <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#7dd3fc]">LLM</span>
               <span className="text-white/30">→</span>
-              <span className="bg-white/10 rounded px-2 py-1 text-white/70">Ответ</span>
+              <span className="bg-white/10 rounded px-2 py-1 text-white/70">Answer</span>
             </div>
           </div>
           <div className="text-[12px] text-white/40 leading-5">
-            Классификация, суммаризация, извлечение данных.<br />
-            <span className="text-white/60">Ты решаешь, что делать с ответом.</span>
+            Classification, summarization, data extraction.<br />
+            <span className="text-white/60">You decide what to do with the answer.</span>
           </div>
         </div>
         {/* Level 2 */}
         <div className="flex-1 flex flex-col gap-2 bg-white/[0.04] rounded-lg p-4">
           <Tag color="#fbbf24">Workflow</Tag>
-          <div className="text-[13px] text-white/50 font-light">Фиксированная цепочка</div>
+          <div className="text-[13px] text-white/50 font-light">Fixed pipeline</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-1 flex-wrap">
               <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#7dd3fc]">LLM 1</span>
@@ -165,26 +161,26 @@ function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
             </div>
           </div>
           <div className="text-[12px] text-white/40 leading-5">
-            Порядок шагов зафиксирован <span className="text-[#fbbf24]">твоим кодом</span>.<br />
-            Модель не решает, что делать дальше.
+            Step order fixed by <span className="text-[#fbbf24]">your code</span>.<br />
+            The model doesn't decide what's next.
           </div>
         </div>
         {/* Level 3 */}
         <div className="flex-1 flex flex-col gap-2 bg-[#2a5ff5]/10 border border-[#2a5ff5]/30 rounded-lg p-4">
-          <Tag color="#a78bfa">Агент</Tag>
-          <div className="text-[13px] text-white/50 font-light">Цикл до завершения</div>
+          <Tag color="#a78bfa">Agent</Tag>
+          <div className="text-[13px] text-white/50 font-light">Loop until done</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-1 flex-wrap">
-              <span className="bg-[#a78bfa]/30 rounded px-2 py-1 text-[#c4b5fd]">LLM решает</span>
+              <span className="bg-[#a78bfa]/30 rounded px-2 py-1 text-[#c4b5fd]">LLM decides</span>
               <span className="text-white/30">→</span>
               <span className="bg-[#00c4b4]/30 rounded px-2 py-1 text-[#5eead4]">Tool</span>
               <span className="text-white/30">→</span>
-              <span className="text-white/30">повтор…</span>
+              <span className="text-white/30">repeat…</span>
             </div>
           </div>
           <div className="text-[12px] text-white/40 leading-5">
-            Порядок шагов решает <span className="text-[#a78bfa]">модель</span> на каждой итерации.<br />
-            Ты даёшь цель и инструменты — не сценарий.
+            Step order decided by <span className="text-[#a78bfa]">the model</span> each iteration.<br />
+            You give the goal and tools — not a script.
           </div>
         </div>
       </div>
@@ -194,52 +190,52 @@ function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
 
 function Slide03AgentLoop({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Intro · Part 1" title="Цикл агента" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Intro · Part 1" title="Agent Loop" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-6 h-full justify-center">
         {/* Loop diagram */}
         <div className="flex items-center justify-center gap-3">
           <div className="flex flex-col items-center gap-1">
-            <div className="bg-white/10 rounded-lg px-4 py-3 text-[14px] text-white/70">Пользователь</div>
-            <div className="text-[11px] text-white/30">запрос</div>
+            <div className="bg-white/10 rounded-lg px-4 py-3 text-[14px] text-white/70">User</div>
+            <div className="text-[11px] text-white/30">request</div>
           </div>
           <div className="text-[#2a5ff5] text-xl">→</div>
           <div className="flex flex-col items-center gap-1">
             <div className="bg-[#2a5ff5]/40 border border-[#2a5ff5] rounded-lg px-6 py-3 text-[15px] text-white font-light">
-              Модель решает
+              Model decides
             </div>
-            <div className="text-[11px] text-white/30">что дальше?</div>
+            <div className="text-[11px] text-white/30">what's next?</div>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <div className="text-[12px] text-[#00c4b4]">нужен инструмент</div>
+            <div className="text-[12px] text-[#00c4b4]">needs a tool</div>
             <div className="text-[#00c4b4] text-xl">→</div>
           </div>
           <div className="flex flex-col items-center gap-1">
             <div className="bg-[#00c4b4]/30 border border-[#00c4b4]/50 rounded-lg px-4 py-3 text-[14px] text-[#5eead4]">
-              Инструмент
+              Tool
             </div>
-            <div className="text-[11px] text-white/30">результат</div>
+            <div className="text-[11px] text-white/30">result</div>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <div className="text-[12px] text-[#00c4b4]">обратно</div>
+            <div className="text-[12px] text-[#00c4b4]">back</div>
             <div className="text-[#00c4b4] rotate-180 text-xl">→</div>
           </div>
         </div>
         <div className="flex items-center justify-center">
           <div className="flex flex-col items-center gap-1">
-            <div className="text-[12px] text-[#4ade80]">готов ответ</div>
+            <div className="text-[12px] text-[#4ade80]">answer ready</div>
             <div className="text-[#4ade80] text-xl">↓</div>
             <div className="bg-[#4ade80]/20 border border-[#4ade80]/40 rounded-lg px-6 py-2 text-[14px] text-[#4ade80]">
-              Финальный ответ
+              Final Answer
             </div>
           </div>
         </div>
         {/* Key components */}
         <div className="flex gap-3">
           {[
-            { label: 'Модель (LLM)', desc: 'мозг, принимает решения', color: '#2a5ff5' },
-            { label: 'Инструкция', desc: 'контракт поведения, не подсказка', color: '#a78bfa' },
-            { label: 'Инструменты', desc: 'функции, которые модель может вызвать', color: '#00c4b4' },
-            { label: 'Сессия', desc: 'история и состояние между итерациями', color: '#fbbf24' },
+            { label: 'Model (LLM)', desc: 'brain, makes decisions', color: '#2a5ff5' },
+            { label: 'Instruction', desc: 'behavior contract, not a hint', color: '#a78bfa' },
+            { label: 'Tools', desc: 'functions the model can call', color: '#00c4b4' },
+            { label: 'Session', desc: 'history and state across iterations', color: '#fbbf24' },
           ].map((c) => (
             <div key={c.label} className="flex-1 bg-white/[0.03] rounded-lg p-3">
               <div className="text-[12px] font-semibold mb-1" style={{ color: c.color }}>{c.label}</div>
@@ -254,30 +250,30 @@ function Slide03AgentLoop({ slideNumber }: SlideProps) {
 
 function Slide04WhyAdk({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Intro · Part 2" title="Почему ADK" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Intro · Part 2" title="Why ADK" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-8 h-full items-start pt-2">
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">Без фреймворка — переизобретаешь</div>
+          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">Without a framework — you reinvent</div>
           {[
-            'Парсинг ответа модели (текст vs вызов инструмента — у каждого провайдера свой формат)',
-            'Хранение истории и состояния между итерациями (session)',
-            'Поток событий: что показывать пока агент думает',
-            'Защита от бесконечного цикла',
-            'Композиция нескольких агентов друг с другом',
+            'Parsing model responses (text vs tool call — every provider has its own format)',
+            'Storing history and state across iterations (session)',
+            'Event stream: what to display while the agent is thinking',
+            'Guard against infinite loops',
+            'Composing multiple agents together',
           ].map((t) => (
             <Bullet key={t}>{t}</Bullet>
           ))}
         </div>
         <div className="w-px bg-white/10 self-stretch" />
         <div className="flex-1 flex flex-col gap-3">
-          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">Google ADK даёт готовые кирпичи</div>
+          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">Google ADK provides ready-made building blocks</div>
           {[
-            ['LlmAgent', 'модель + инструкция + инструменты'],
-            ['Runner', 'исполняет цикл, отдаёт поток событий (for await)'],
-            ['SessionService', 'хранит историю диалога'],
-            ['FunctionTool', 'оборачивает функцию в инструмент, понятный модели'],
-            ['SequentialAgent / ParallelAgent', 'композиция нескольких агентов'],
-            ['BaseLlm', 'абстракция провайдера — Gemini, Kitana, Ollama'],
+            ['LlmAgent', 'model + instruction + tools'],
+            ['Runner', 'runs the loop, emits an event stream (for await)'],
+            ['SessionService', 'stores conversation history'],
+            ['FunctionTool', 'wraps a function into a model-callable tool'],
+            ['SequentialAgent / ParallelAgent', 'compose multiple agents'],
+            ['BaseLlm', 'provider abstraction — Gemini, Ollama, and more'],
           ].map(([name, desc]) => (
             <div key={name} className="flex gap-2 items-start text-[14px]">
               <span className="text-[#00c4b4] font-mono shrink-0">{name}</span>
@@ -292,16 +288,16 @@ function Slide04WhyAdk({ slideNumber }: SlideProps) {
 
 function Slide05Plan({ slideNumber }: SlideProps) {
   const rows = [
-    { block: 'Вступление', what: 'Архитектура агента, ADK, план', time: '10 мин', color: '#4ade80' },
-    { block: 'Block 1', what: 'LlmAgent → FunctionTool', time: '25 мин', color: '#2a5ff5' },
-    { block: 'Block 2', what: 'SequentialAgent — один агент vs несколько', time: '30 мин', color: '#2a5ff5' },
-    { block: '── Перерыв ──', what: 'Еда, разминка, вопросы', time: '25 мин', color: '#555' },
-    { block: 'Block 3', what: 'Lead Finder — реальный кейс', time: '30 мин', color: '#a78bfa' },
-    { block: 'Block 4', what: 'Свой агент — задача из твоей работы', time: '20 мин', color: '#fbbf24' },
-    { block: 'Закрытие', what: 'planner → data portal → lead-finder → n8n', time: '25 мин', color: '#00c4b4' },
+    { block: 'Intro', what: 'Agent architecture, ADK, plan', time: '10 min', color: '#4ade80' },
+    { block: 'Block 1', what: 'LlmAgent → FunctionTool', time: '25 min', color: '#2a5ff5' },
+    { block: 'Block 2', what: 'SequentialAgent — one agent vs many', time: '30 min', color: '#2a5ff5' },
+    { block: '── Break ──', what: 'Food, stretch, questions', time: '25 min', color: '#555' },
+    { block: 'Block 3', what: 'Lead Finder — real case', time: '30 min', color: '#a78bfa' },
+    { block: 'Block 4', what: 'Your Agent — a task from your work', time: '20 min', color: '#fbbf24' },
+    { block: 'Close', what: 'planner → data portal → lead-finder → n8n', time: '25 min', color: '#00c4b4' },
   ]
   return (
-    <ContentSlide eyebrow="Intro · Part 3" title="Что делаем сегодня" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Intro · Part 3" title="Today's Plan" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-1.5">
         {rows.map((r) => (
           <div key={r.block} className="flex items-center gap-4 bg-white/[0.03] rounded px-4 py-2.5">
@@ -310,7 +306,7 @@ function Slide05Plan({ slideNumber }: SlideProps) {
             <span className="text-[12px] text-white/30 shrink-0">{r.time}</span>
           </div>
         ))}
-        <div className="text-right text-[11px] text-white/25 mt-1">итого ~2ч45</div>
+        <div className="text-right text-[11px] text-white/25 mt-1">total ~2h 45min</div>
       </div>
     </ContentSlide>
   )
@@ -321,9 +317,9 @@ function Slide05Plan({ slideNumber }: SlideProps) {
 function Slide06Block1Section({ slideNumber }: SlideProps) {
   return (
     <SectionSlide
-      eyebrow="Block 1 · 25 мин"
+      eyebrow="Block 1 · 25 min"
       title="Your First Agent"
-      subtitle="7 мин live-код → 18 мин пишете сами"
+      subtitle="7 min live code → 18 min hands-on"
       slideNumber={slideNumber}
       footerLabel={FOOTER}
     />
@@ -332,13 +328,13 @@ function Slide06Block1Section({ slideNumber }: SlideProps) {
 
 function Slide07Recipe({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 1" title="Рецепт: любой LlmAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 1" title="Recipe: Any LlmAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full">
         <div className="flex-1 flex flex-col gap-4 justify-center">
           {[
-            { n: '1', label: 'Создать агента', desc: 'name, model, instruction' },
-            { n: '2', label: 'Задать вопрос', desc: 'newMessage с текстом' },
-            { n: '3', label: 'Запустить Runner', desc: 'for await → события → вывод' },
+            { n: '1', label: 'Create an agent', desc: 'name, model, instruction' },
+            { n: '2', label: 'Send a message', desc: 'newMessage with text' },
+            { n: '3', label: 'Run the Runner', desc: 'for await → events → output' },
           ].map((s) => (
             <div key={s.n} className="flex gap-4 items-start">
               <div className="w-8 h-8 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#7dd3fc] font-bold text-[14px] shrink-0">
@@ -351,7 +347,7 @@ function Slide07Recipe({ slideNumber }: SlideProps) {
             </div>
           ))}
           <div className="mt-2 text-[12px] text-white/30">
-            Этот же рецепт — в каждом агенте сегодня, от hello-agent до lead-finder.
+            Same recipe in every agent today — from hello-agent to lead-finder.
           </div>
         </div>
         <div className="flex-1 flex flex-col justify-center">
@@ -361,7 +357,7 @@ function Slide07Recipe({ slideNumber }: SlideProps) {
             {'  '}model,{'\n'}
             {'  '}instruction: {st('"You are a friendly assistant."')},{'\n'}
             {'}'});{'\n\n'}
-            {cm('// Runner исполняет цикл агента')}{'\n'}
+            {cm('// Runner executes the agent loop')}{'\n'}
             {kw('for await')} ({kw('const')} event {kw('of')} runner.runAsync(...){')'} {'{'}{'\n'}
             {'  '}{kw('if')} (event.content?.parts?.[0]?.text) {'{'}{'\n'}
             {'    '}process.stdout.write(event.content.parts[0].text){'\n'}
@@ -376,36 +372,36 @@ function Slide07Recipe({ slideNumber }: SlideProps) {
 
 function Slide08InstructionContract({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 1" title="instruction — контракт, не подсказка" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 1" title="instruction — a contract, not a hint" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-center">
         <div className="flex-1 flex flex-col gap-4">
           <div className="bg-[#f87171]/10 border border-[#f87171]/30 rounded-lg p-4">
-            <div className="text-[12px] text-[#f87171] mb-2 uppercase tracking-widest">Без instruction</div>
+            <div className="text-[12px] text-[#f87171] mb-2 uppercase tracking-widest">Without instruction</div>
             <div className="text-[14px] text-white/60 font-light leading-6">
               "Hi! How can I help you today?"<br />
               "Sure, I'd be happy to assist..."<br />
-              <span className="text-white/30 italic">Generic. Непредсказуемый. Каждый раз разный.</span>
+              <span className="text-white/30 italic">Generic. Unpredictable. Different every time.</span>
             </div>
           </div>
           <div className="bg-[#4ade80]/10 border border-[#4ade80]/30 rounded-lg p-4">
-            <div className="text-[12px] text-[#4ade80] mb-2 uppercase tracking-widest">С instruction</div>
+            <div className="text-[12px] text-[#4ade80] mb-2 uppercase tracking-widest">With instruction</div>
             <div className="text-[14px] text-white/60 font-light leading-6">
-              Агент знает кто он, что умеет, как отвечать.<br />
-              <span className="text-white/30 italic">Консистентный. Предсказуемый. Контракт.</span>
+              The agent knows who it is, what it can do, how to respond.<br />
+              <span className="text-white/30 italic">Consistent. Predictable. A contract.</span>
             </div>
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-4 justify-center">
-          <div className="text-[13px] text-white/40 uppercase tracking-widest">Попробуй сам</div>
+          <div className="text-[13px] text-white/40 uppercase tracking-widest">Try it yourself</div>
           <Code>
-            {cm('// Шаг 1: запусти как есть (instruction пустая)')}{'\n'}
+            {cm('// Step 1: run as-is (instruction is empty)')}{'\n'}
             instruction: {st('""')}{'\n\n'}
-            {cm('// Шаг 2: заполни и сравни ответ')}{'\n'}
-            instruction: {st('"Ты помощник..."')}
+            {cm('// Step 2: fill it in and compare the output')}{'\n'}
+            instruction: {st('"You are an assistant..."')}
           </Code>
           <div className="text-[13px] text-white/50 font-light leading-6">
-            Без инструкции модель ведёт себя как "general-purpose chatbot".<br />
-            Instruction — это то, что делает агента специалистом.
+            Without instruction the model behaves like a general-purpose chatbot.<br />
+            Instruction is what makes the agent a specialist.
           </div>
         </div>
       </div>
@@ -415,27 +411,27 @@ function Slide08InstructionContract({ slideNumber }: SlideProps) {
 
 function Slide09FunctionTool({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 1" title="FunctionTool — даём агенту инструмент" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 1" title="FunctionTool — give the agent a tool" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full">
         <div className="flex-1 flex flex-col gap-4 justify-center">
           <div className="flex items-center gap-3 text-[13px]">
-            <span className="bg-white/10 rounded px-3 py-2 text-white/60">"Какая погода в Москве?"</span>
+            <span className="bg-white/10 rounded px-3 py-2 text-white/60">"What's the weather in London?"</span>
             <span className="text-[#2a5ff5]">→</span>
-            <span className="bg-[#a78bfa]/30 border border-[#a78bfa]/50 rounded px-3 py-2 text-[#c4b5fd]">Модель решает</span>
+            <span className="bg-[#a78bfa]/30 border border-[#a78bfa]/50 rounded px-3 py-2 text-[#c4b5fd]">Model decides</span>
           </div>
           <div className="flex items-center gap-3 text-[13px] pl-8">
-            <span className="text-[#00c4b4]">↓ вызывает</span>
+            <span className="text-[#00c4b4]">↓ calls</span>
           </div>
           <div className="flex items-center gap-3 text-[13px]">
-            <span className="bg-[#00c4b4]/20 border border-[#00c4b4]/40 rounded px-3 py-2 text-[#5eead4]">getWeather("Москва")</span>
+            <span className="bg-[#00c4b4]/20 border border-[#00c4b4]/40 rounded px-3 py-2 text-[#5eead4]">getWeather("London")</span>
             <span className="text-[#00c4b4]">→</span>
             <span className="bg-white/10 rounded px-3 py-2 text-white/60">{'{ tempC: 18, condition: "cloudy" }'}</span>
           </div>
           <div className="flex items-center gap-3 text-[13px] pl-8">
-            <span className="text-[#4ade80]">↓ результат обратно модели</span>
+            <span className="text-[#4ade80]">↓ result back to model</span>
           </div>
           <div className="flex items-center gap-3 text-[13px]">
-            <span className="bg-[#4ade80]/10 border border-[#4ade80]/30 rounded px-3 py-2 text-[#86efac]">"В Москве 18°C и облачно"</span>
+            <span className="bg-[#4ade80]/10 border border-[#4ade80]/30 rounded px-3 py-2 text-[#86efac]">"London: 18°C, cloudy"</span>
           </div>
         </div>
         <div className="flex-1 flex flex-col justify-center">
@@ -447,13 +443,13 @@ function Slide09FunctionTool({ slideNumber }: SlideProps) {
             {'    '}city: z.string(),{'\n'}
             {'  '}{'}'},{'\n'}
             {'  '}{kw('execute')}: {kw('async')} ({'{'} city {'}'}) {'=>'} {'{'}{'\n'}
-            {'    '}{cm('// TODO: вернуть фейковые данные')}{'\n'}
+            {'    '}{cm('// TODO: return fake data')}{'\n'}
             {'    '}{kw('return')} {'{'} tempC: 18 {'}'};{'\n'}
             {'  '},{'}'},{'\n'}
             {'}'});{'\n\n'}
             {kw('export const')} agent = {kw('new')} {hl('LlmAgent')}({'{'}{'\n'}
             {'  '}...{'\n'}
-            {'  '}tools: [weatherTool], {cm('// ← подключаем')}{'\n'}
+            {'  '}tools: [weatherTool], {cm('// ← attach')}{'\n'}
             {'}'});
           </Code>
         </div>
@@ -464,26 +460,26 @@ function Slide09FunctionTool({ slideNumber }: SlideProps) {
 
 function Slide10WriteBlock1({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 1 · Пишете сами" title="Задания 1.1 и 1.2" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 1 · Hands-on" title="Tasks 1.1 and 1.2" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-4 h-full">
         <div className="flex gap-4">
           <div className="flex-1 bg-white/[0.04] rounded-lg p-4 flex flex-col gap-2">
             <Tag color="#2a5ff5">1.1 · hello-agent.ts</Tag>
-            <Bullet>Запусти с пустой instruction — посмотри что выдаёт</Bullet>
-            <Bullet>Заполни instruction и вопрос — сравни разницу</Bullet>
+            <Bullet>Run with empty instruction — see what it outputs</Bullet>
+            <Bullet>Fill in instruction and question — compare the difference</Bullet>
           </div>
           <div className="flex-1 bg-white/[0.04] rounded-lg p-4 flex flex-col gap-2">
             <Tag color="#00c4b4">1.2 · tool-agent.ts</Tag>
-            <Bullet>Напиши FunctionTool с фейковой погодой</Bullet>
-            <Bullet>Убери tool из tools:[] — агент придумает сам. Верни обратно.</Bullet>
+            <Bullet>Write a FunctionTool with fake weather data</Bullet>
+            <Bullet>Remove tool from tools:[] — agent will guess. Add it back.</Bullet>
           </div>
         </div>
         <Code>
-          {cm('# запуск')}{'\n'}
+          {cm('# run')}{'\n'}
           npx tsx examples/01-adk/starter/hello-agent.ts{'\n'}
           npx tsx examples/01-adk/starter/tool-agent.ts{'\n\n'}
-          {cm('# застрял > 5 мин → смотри solution/')}{'\n'}
-          {cm('# подсказка: что возвращает инструмент? добавь console.log перед return')}
+          {cm('# stuck > 5 min → check solution/')}{'\n'}
+          {cm('# hint: what does the tool return? add console.log before return')}
         </Code>
         <ActivityTimer minutes={18} />
       </div>
@@ -496,9 +492,9 @@ function Slide10WriteBlock1({ slideNumber }: SlideProps) {
 function Slide11Block2Section({ slideNumber }: SlideProps) {
   return (
     <SectionSlide
-      eyebrow="Block 2 · 30 мин"
+      eyebrow="Block 2 · 30 min"
       title="Pipeline"
-      subtitle="10 мин эксперимент → 5 мин live-код → 15 мин пишете сами"
+      subtitle="10 min experiment → 5 min live code → 15 min hands-on"
       slideNumber={slideNumber}
       footerLabel={FOOTER}
     />
@@ -507,32 +503,32 @@ function Slide11Block2Section({ slideNumber }: SlideProps) {
 
 function Slide12OneVsMany({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 2 · Ключевой момент" title="Один агент vs несколько" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 2 · Key moment" title="One agent vs many" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-stretch">
         <div className="flex-1 flex flex-col gap-3 bg-[#f87171]/5 border border-[#f87171]/20 rounded-lg p-5">
-          <div className="text-[13px] text-[#f87171] uppercase tracking-widest">Вариант A — один промпт</div>
+          <div className="text-[13px] text-[#f87171] uppercase tracking-widest">Option A — one prompt</div>
           <Code>
             instruction:{'\n'}
-            {st('"Найди лидов + напиши офферы + проверь"')}{'\n'}
-            {cm('// один LlmAgent делает всё')}
+            {st('"Find leads + write offers + validate"')}{'\n'}
+            {cm('// single LlmAgent does everything')}
           </Code>
           <div className="flex-1 text-[13px] text-white/50 font-light leading-6">
-            Модель оптимизирует ВСЕ задачи сразу — идёт на компромисс по каждой.
-            Валидатор не критикует то, что только что написал сам.
+            The model optimizes ALL tasks at once — and compromises on each.
+            The validator can't criticize what it just wrote itself.
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-3 bg-[#4ade80]/5 border border-[#4ade80]/20 rounded-lg p-5">
-          <div className="text-[13px] text-[#4ade80] uppercase tracking-widest">Вариант B — три агента</div>
+          <div className="text-[13px] text-[#4ade80] uppercase tracking-widest">Option B — three agents</div>
           <Code>
             {hl('SequentialAgent')}:{'\n'}
             analyst {ok('→')} copywriter {ok('→')} validator{'\n'}
-            {cm('// каждый оптимизирует одну задачу')}
+            {cm('// each optimizes one task')}
           </Code>
           <div className="flex-1 text-[13px] text-white/50 font-light leading-6">
-            Каждый агент видит задачу свежим взглядом.<br />
+            Each agent approaches the task fresh.<br />
             <span className="text-white/70">
-              "Модель в одном промпте идёт на компромисс по каждой задаче.
-              Три агента оптимизируют каждую задачу отдельно."
+              "A model in one prompt compromises on each task.
+              Three agents each optimize a single task."
             </span>
           </div>
         </div>
@@ -543,17 +539,17 @@ function Slide12OneVsMany({ slideNumber }: SlideProps) {
 
 function Slide13SequentialCode({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 2" title="SequentialAgent — тот же LlmAgent, другая обёртка" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 2" title="SequentialAgent — same LlmAgent, different wrapper" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full">
         <div className="flex-1 flex flex-col justify-center">
           <Code>
             {kw('const')} researcher = {kw('new')} {hl('LlmAgent')}({'{'}{'\n'}
             {'  '}name: {st('"researcher"')}, model: pickModel(),{'\n'}
-            {'  '}instruction: {st('"...возвращай ТОЛЬКО JSON { facts: [] }"')},{'\n'}
+            {'  '}instruction: {st('"...return ONLY JSON { facts: [] }"')},{'\n'}
             {'}'});{'\n\n'}
             {kw('const')} editor = {kw('new')} {hl('LlmAgent')}({'{'}{'\n'}
             {'  '}name: {st('"editor"')}, model: pickModel(),{'\n'}
-            {'  '}instruction: {st('"Перепиши факты в один абзац"')},{'\n'}
+            {'  '}instruction: {st('"Rewrite the facts into one paragraph"')},{'\n'}
             {'}'});{'\n\n'}
             {kw('export const')} agent = {kw('new')} {hl('SequentialAgent')}({'{'}{'\n'}
             {'  '}name: {st('"research-pipeline"')},{'\n'}
@@ -563,10 +559,10 @@ function Slide13SequentialCode({ slideNumber }: SlideProps) {
         </div>
         <div className="flex-1 flex flex-col gap-4 justify-center">
           <div className="flex flex-col gap-3">
-            <Bullet>Каждый суб-агент — обычный <span className="text-[#00c4b4] font-mono">LlmAgent</span>, тот же, что в Block 1</Bullet>
-            <Bullet><span className="text-[#a78bfa] font-mono">SequentialAgent</span> только определяет порядок и прокидывает вывод одного в следующий</Bullet>
-            <Bullet>Строгий JSON в инструкции исследователя — контракт между агентами. Редактор зависит от этого формата.</Bullet>
-            <Bullet><span className="text-[#fbbf24] font-mono">pickModel()</span> — тот же тумблер провайдера, что и в Block 1</Bullet>
+            <Bullet>Each sub-agent is a plain <span className="text-[#00c4b4] font-mono">LlmAgent</span>, the same as in Block 1</Bullet>
+            <Bullet><span className="text-[#a78bfa] font-mono">SequentialAgent</span> only defines the order and pipes one output into the next</Bullet>
+            <Bullet>Strict JSON in the researcher instruction — the contract between agents. Editor depends on that format.</Bullet>
+            <Bullet><span className="text-[#fbbf24] font-mono">pickModel()</span> — same provider toggle as in Block 1</Bullet>
           </div>
         </div>
       </div>
@@ -576,28 +572,28 @@ function Slide13SequentialCode({ slideNumber }: SlideProps) {
 
 function Slide14WriteBlock2({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 2 · Пишете сами" title="Задание 1.3 — SequentialAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 2 · Hands-on" title="Task 1.3 — SequentialAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-4 h-full">
         <div className="flex gap-4">
           <div className="flex-1 bg-white/[0.04] rounded-lg p-4 flex flex-col gap-2">
             <Tag color="#a78bfa">researcher</Tag>
-            <div className="text-[13px] text-white/60 font-light">принимает тему</div>
+            <div className="text-[13px] text-white/60 font-light">receives topic</div>
             <div className="text-[13px] text-[#00c4b4] font-mono">{'→ { "facts": ["...", "...", "..."] }'}</div>
-            <div className="text-[12px] text-white/30">строго JSON, никакого текста вокруг</div>
+            <div className="text-[12px] text-white/30">strict JSON, no surrounding text</div>
           </div>
           <div className="flex-1 bg-white/[0.04] rounded-lg p-4 flex flex-col gap-2">
             <Tag color="#4ade80">editor</Tag>
-            <div className="text-[13px] text-white/60 font-light">принимает факты</div>
-            <div className="text-[13px] text-[#00c4b4] font-mono">→ один абзац прозой</div>
+            <div className="text-[13px] text-white/60 font-light">receives facts</div>
+            <div className="text-[13px] text-[#00c4b4] font-mono">→ one paragraph in prose</div>
           </div>
         </div>
         <Code>
-          npx tsx examples/01-adk/starter/sequential.ts {st('"квантовые компьютеры"')}{'\n'}
+          npx tsx examples/01-adk/starter/sequential.ts {st('"quantum computers"')}{'\n'}
           {cm('# → [researcher] { "facts": [...] }')}{'\n'}
-          {cm('# → [editor] "Квантовые компьютеры..."')}
+          {cm('# → [editor] "Quantum computers..."')}
         </Code>
         <div className="text-[12px] text-white/30">
-          Бонус (1.4): ParallelAgent — оба агента одновременно, замерь время через console.time
+          Bonus (1.4): ParallelAgent — both agents at the same time, measure with console.time
         </div>
         <ActivityTimer minutes={15} />
       </div>
@@ -610,9 +606,9 @@ function Slide14WriteBlock2({ slideNumber }: SlideProps) {
 function Slide15Block3Section({ slideNumber }: SlideProps) {
   return (
     <SectionSlide
-      eyebrow="Block 3 · 30 мин"
+      eyebrow="Block 3 · 30 min"
       title="Lead Finder"
-      subtitle="8 мин live-демо → 17 мин пишете сами → 5 мин adk web"
+      subtitle="8 min live demo → 17 min hands-on → 5 min adk web"
       slideNumber={slideNumber}
       footerLabel={FOOTER}
     />
@@ -621,15 +617,15 @@ function Slide15Block3Section({ slideNumber }: SlideProps) {
 
 function Slide16LeadFinderArch({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 3" title="Та же архитектура — новые данные" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 3" title="Same architecture — new data" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-start pt-2">
         <div className="flex-1 flex flex-col gap-4 justify-center">
-          <div className="text-[13px] text-white/40 mb-1">Не новая архитектура — тот же SequentialAgent из Block 2, три агента вместо двух</div>
+          <div className="text-[13px] text-white/40 mb-1">Not new architecture — the same SequentialAgent from Block 2, three agents instead of two</div>
           <div className="flex flex-col gap-2">
             {[
-              { name: 'analyst', role: 'выбирает топ-3 лида по ICP из комментариев', color: '#2a5ff5' },
-              { name: 'copywriter', role: 'пишет персональный оффер для каждого', color: '#a78bfa' },
-              { name: 'validator', role: 'отклоняет шаблонные, переписывает', color: '#00c4b4' },
+              { name: 'analyst', role: 'picks top-3 leads by ICP from comments', color: '#2a5ff5' },
+              { name: 'copywriter', role: 'writes a personalized offer for each', color: '#a78bfa' },
+              { name: 'validator', role: 'rejects templated ones, rewrites them', color: '#00c4b4' },
             ].map((a, i) => (
               <div key={a.name} className="flex items-center gap-3">
                 {i > 0 && <div className="w-4 text-white/20 text-center">↓</div>}
@@ -649,12 +645,12 @@ function Slide16LeadFinderArch({ slideNumber }: SlideProps) {
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-3 justify-center">
-          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">Ново в этом блоке</div>
+          <div className="text-[13px] text-white/40 uppercase tracking-widest mb-1">New in this block</div>
           <Bullet>
-            <span className="text-[#fbbf24]">pickComments()</span> — тот же toggle-паттерн что и pickModel().<br />
-            Один вариант = FAKE_COMMENTS, другой = реальный API
+            <span className="text-[#fbbf24]">pickComments()</span> — same toggle pattern as pickModel().<br />
+            One variant = FAKE_COMMENTS, other = real API
           </Bullet>
-          <Bullet>ICP — твой идеальный клиент. Поменяй и запусти снова — другие лиды из тех же комментариев</Bullet>
+          <Bullet>ICP — your ideal customer. Change it and run again — different leads from the same comments</Bullet>
         </div>
       </div>
     </ContentSlide>
@@ -663,12 +659,12 @@ function Slide16LeadFinderArch({ slideNumber }: SlideProps) {
 
 function Slide17DemoChecklist({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 3 · Live демо" title="Что смотрим" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 3 · Live demo" title="What we're watching" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-4 h-full justify-center max-w-xl">
         {[
-          { n: '1', text: 'Запустить на FAKE_COMMENTS — видим [analyst] → [copywriter] → [validator]' },
-          { n: '2', text: 'Раскомментировать fetch к порталу в pickComments()' },
-          { n: '3', text: 'Запустить ту же команду — те же три агента, но в выводе реальные лиды' },
+          { n: '1', text: 'Run on FAKE_COMMENTS — see [analyst] → [copywriter] → [validator]' },
+          { n: '2', text: 'Uncomment the portal fetch in pickComments()' },
+          { n: '3', text: 'Run the same command — same three agents, but real leads in the output' },
         ].map((s) => (
           <div key={s.n} className="flex gap-4 items-start bg-white/[0.03] rounded-lg px-4 py-3">
             <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 flex items-center justify-center text-[#7dd3fc] font-bold text-[13px] shrink-0">
@@ -678,7 +674,7 @@ function Slide17DemoChecklist({ slideNumber }: SlideProps) {
           </div>
         ))}
         <div className="text-[13px] text-white/30 font-light mt-2">
-          Итог: leads_result.json во второй раз — про других, настоящих людей. В трёх агентах не поменялось ничего.
+          Result: leads_result.json a second time — about different, real people. Not a line changed in the three agents.
         </div>
       </div>
     </ContentSlide>
@@ -687,13 +683,13 @@ function Slide17DemoChecklist({ slideNumber }: SlideProps) {
 
 function Slide18WriteBlock3({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 3 · Пишете сами" title="Задание 2.1 — Lead Finder пайплайн" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 3 · Hands-on" title="Task 2.1 — Lead Finder pipeline" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-3 h-full">
         <div className="flex gap-3">
           {[
-            { step: 'Шаг 1', desc: 'Добавь только analyst, запусти с пустой instruction — увидишь прозу вместо JSON', color: '#f87171' },
-            { step: 'Шаг 2', desc: 'Заполни instruction с JSON-контрактом — запусти снова, увидишь разницу', color: '#fbbf24' },
-            { step: 'Шаг 3', desc: 'Допиши copywriter и validator, убедись что сохраняется leads_result.json', color: '#4ade80' },
+            { step: 'Step 1', desc: "Add only analyst, run with empty instruction — you'll see prose instead of JSON", color: '#f87171' },
+            { step: 'Step 2', desc: 'Fill in instruction with the JSON contract — run again, see the difference', color: '#fbbf24' },
+            { step: 'Step 3', desc: 'Add copywriter and validator, confirm leads_result.json is saved', color: '#4ade80' },
           ].map((s) => (
             <div key={s.step} className="flex-1 bg-white/[0.03] rounded-lg p-3 flex flex-col gap-1">
               <div className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: s.color }}>{s.step}</div>
@@ -709,7 +705,7 @@ function Slide18WriteBlock3({ slideNumber }: SlideProps) {
           {cm('# → 💾 Saved: leads_result.json')}
         </Code>
         <div className="text-[12px] text-white/30">
-          Эксперимент: поменяй ICP и запусти снова — другие люди из тех же комментариев
+          Experiment: change ICP and run again — different people from the same comments
         </div>
         <ActivityTimer minutes={17} />
       </div>
@@ -719,7 +715,7 @@ function Slide18WriteBlock3({ slideNumber }: SlideProps) {
 
 function Slide19AdkWeb({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 3 · adk web" title="Граф агентов в браузере" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 3 · adk web" title="Agent graph in the browser" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-center">
         <div className="flex-1 flex flex-col gap-4">
           <Code>
@@ -727,15 +723,15 @@ function Slide19AdkWeb({ slideNumber }: SlideProps) {
             {cm('# → http://localhost:8000')}
           </Code>
           <div className="flex flex-col gap-3">
-            <Bullet>Видишь граф: analyst → copywriter → validator</Bullet>
-            <Bullet>Прогони запрос — смотри как validator реально отклоняет и переписывает шаблонный оффер</Bullet>
-            <Bullet><span className="text-[#fbbf24]">Агент ведёт себя странно — сюда смотришь первым делом</span></Bullet>
+            <Bullet>You see the graph: analyst → copywriter → validator</Bullet>
+            <Bullet>Run a query — watch how validator actually rejects and rewrites a templated offer</Bullet>
+            <Bullet><span className="text-[#fbbf24]">Agent behaving strangely — this is your first debugging stop</span></Bullet>
           </div>
         </div>
         <div className="flex-1 flex flex-col justify-center gap-3">
           <div className="bg-white/[0.04] rounded-lg p-4 text-[13px] text-white/50 font-light leading-6">
-            adk web = тот же агент за HTTP-эндпоинтом.<br />
-            В Закрытии n8n будет дёргать именно этот эндпоинт — не новый код, тот же агент.
+            adk web = the same agent behind an HTTP endpoint.<br />
+            In Close, n8n will hit exactly this endpoint — no new code, same agent.
           </div>
         </div>
       </div>
@@ -748,9 +744,9 @@ function Slide19AdkWeb({ slideNumber }: SlideProps) {
 function Slide20Block4Section({ slideNumber }: SlideProps) {
   return (
     <SectionSlide
-      eyebrow="Block 4 · 20 мин"
+      eyebrow="Block 4 · 20 min"
       title="Your Own Agent"
-      subtitle="15 мин пишете с нуля → 5 мин показываем"
+      subtitle="15 min write from scratch → 5 min show & tell"
       slideNumber={slideNumber}
       footerLabel={FOOTER}
     />
@@ -759,32 +755,32 @@ function Slide20Block4Section({ slideNumber }: SlideProps) {
 
 function Slide21OwnAgentAssignment({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 4" title="Задание" slideNumber={slideNumber} footerLabel={FOOTER}>
-      <div className="flex flex-col gap-6 h-full justify-center">
-        <div className="text-center py-6 bg-white/[0.04] rounded-xl border border-white/10">
+    <ContentSlide eyebrow="Block 4" title="Assignment" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex flex-col gap-5 pt-2">
+        <div className="text-center py-4 bg-white/[0.04] rounded-xl border border-white/10">
           <div className="text-[22px] text-white font-light leading-relaxed">
-            Возьми задачу из своей работы,<br />которую делаешь руками.<br />
-            <span className="text-[#2a5ff5]">Напиши агента.</span>
+            Take a task from your work<br />that you do manually.<br />
+            <span className="text-[#2a5ff5]">Write an agent.</span>
           </div>
         </div>
         <div className="flex gap-4">
           <div className="flex-1 flex flex-col gap-2">
-            <div className="text-[12px] text-white/30 uppercase tracking-widest">Как выбрать задачу</div>
-            <Bullet>Повторяющаяся, не разовая</Bullet>
-            <Bullet>Чёткий вход и ожидаемый выход</Bullet>
-            <Bullet>Узкая — чтобы уместиться в 15 минут</Bullet>
+            <div className="text-[12px] text-white/30 uppercase tracking-widest">How to pick a task</div>
+            <Bullet>Recurring, not one-off</Bullet>
+            <Bullet>Clear input and expected output</Bullet>
+            <Bullet>Narrow — small enough to fit in 15 minutes</Bullet>
             <div className="text-[12px] text-white/30 mt-2">
-              Застрял? "Три вещи, которые делаю руками каждую неделю и ненавижу."
+              Stuck? "Three things I do manually every week and hate."
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-2">
-            <div className="text-[12px] text-white/30 uppercase tracking-widest">В арсенале</div>
+            <div className="text-[12px] text-white/30 uppercase tracking-widest">Your toolkit</div>
             <div className="text-[14px] font-mono text-[#2a5ff5]">LlmAgent</div>
-            <div className="text-[13px] text-white/40 font-light -mt-1">модель + инструкция — для большинства задач достаточно</div>
+            <div className="text-[13px] text-white/40 font-light -mt-1">model + instruction — enough for most tasks</div>
             <div className="text-[14px] font-mono text-[#00c4b4] mt-1">FunctionTool</div>
-            <div className="text-[13px] text-white/40 font-light -mt-1">если нужен внешний инструмент</div>
+            <div className="text-[13px] text-white/40 font-light -mt-1">if the agent needs an external tool</div>
             <div className="text-[14px] font-mono text-[#a78bfa] mt-1">SequentialAgent</div>
-            <div className="text-[13px] text-white/40 font-light -mt-1">если задача делится на понятные шаги</div>
+            <div className="text-[13px] text-white/40 font-light -mt-1">if the task splits into clear steps</div>
           </div>
         </div>
         <Code>
@@ -798,20 +794,20 @@ function Slide21OwnAgentAssignment({ slideNumber }: SlideProps) {
 
 function Slide22WriteBlock4({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Block 4 · Пишете сами" title="Свой агент — 15 минут" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Block 4 · Hands-on" title="Your Agent — 15 minutes" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-5 h-full justify-center">
         <div className="text-[15px] text-white/60 font-light leading-7">
-          Нет скелета. Нет задания. Нет правильного ответа.<br />
-          Только твоя задача и то, что уже умеешь.
+          No skeleton. No instructions. No right answer.<br />
+          Just your task and what you already know.
         </div>
         <div className="flex gap-3">
           <div className="flex-1 bg-white/[0.03] rounded-lg p-4 text-[13px] text-white/50 font-light leading-6">
-            <span className="text-white/80">Помощь с формулировкой задачи</span> важнее помощи с кодом.
-            Фасилитатор поможет найти правильный вход/выход — не синтаксис.
+            <span className="text-white/80">Helping frame the task</span> matters more than helping with code.
+            The facilitator helps find the right input/output — not syntax.
           </div>
           <div className="flex-1 bg-white/[0.03] rounded-lg p-4 text-[13px] text-white/50 font-light leading-6">
-            <span className="text-white/80">pickModel()</span> работает так же, как везде —
-            одна строка чтобы переключить провайдера.
+            <span className="text-white/80">pickModel()</span> works the same as everywhere —
+            one line to switch the provider.
           </div>
         </div>
         <ActivityTimer minutes={15} />
@@ -825,9 +821,9 @@ function Slide22WriteBlock4({ slideNumber }: SlideProps) {
 function Slide23CloseSection({ slideNumber }: SlideProps) {
   return (
     <SectionSlide
-      eyebrow="Close · 25 мин"
+      eyebrow="Close · 25 min"
       title="Real Conditions"
-      subtitle="То, что построили — теперь работает без единого клика"
+      subtitle="What you built — now runs without a single click"
       slideNumber={slideNumber}
       footerLabel={FOOTER}
     />
@@ -836,14 +832,14 @@ function Slide23CloseSection({ slideNumber }: SlideProps) {
 
 function Slide24ClosePipeline({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Close" title="Оркестрация через n8n" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Close" title="Orchestration via n8n" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-4 h-full justify-center">
         <div className="flex flex-col gap-1 items-start">
           {[
-            { label: 'planner', desc: 'решает какой канал сканировать (новый LlmAgent)', color: '#2a5ff5', tag: 'presenter-only' },
-            { label: 'data portal', desc: 'отдаёт реальные комментарии из выбранного канала', color: '#fbbf24', tag: 'Block 3' },
-            { label: 'lead-finder', desc: 'analyst → copywriter → validator', color: '#a78bfa', tag: 'Block 3 ← ты это написал' },
-            { label: 'n8n', desc: 'Sort → Set — группирует и форматирует финальный список', color: '#00c4b4', tag: 'оркестрация' },
+            { label: 'planner', desc: 'decides which channel to scan (new LlmAgent)', color: '#2a5ff5', tag: 'presenter-only' },
+            { label: 'data portal', desc: 'returns real comments from the chosen channel', color: '#fbbf24', tag: 'Block 3' },
+            { label: 'lead-finder', desc: 'analyst → copywriter → validator', color: '#a78bfa', tag: 'Block 3 ← you wrote this' },
+            { label: 'n8n', desc: 'Sort → Set — groups and formats the final list', color: '#00c4b4', tag: 'orchestration' },
           ].map((s, i) => (
             <div key={s.label} className="flex flex-col items-start w-full">
               {i > 0 && <div className="text-white/20 ml-5 text-lg leading-4">↓</div>}
@@ -856,7 +852,7 @@ function Slide24ClosePipeline({ slideNumber }: SlideProps) {
           ))}
         </div>
         <div className="text-[13px] text-white/40 font-light mt-1">
-          Два независимых ADK-агента за двумя HTTP-эндпоинтами (adk web). n8n дёргает оба по очереди — оркестрация в n8n, не новый TypeScript-код.
+          Two independent ADK agents behind two HTTP endpoints (adk web). n8n calls both in sequence — orchestration in n8n, not new TypeScript code.
         </div>
       </div>
     </ContentSlide>
@@ -865,7 +861,7 @@ function Slide24ClosePipeline({ slideNumber }: SlideProps) {
 
 function Slide25PlannerSlide({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Close" title="planner — тот же LlmAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Close" title="planner — the same LlmAgent" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-center">
         <div className="flex-1">
           <Code>
@@ -875,20 +871,20 @@ function Slide25PlannerSlide({ slideNumber }: SlideProps) {
             {'  '}instruction: {st('`Given a business description,')}{'\n'}
             {'             '}{st("pick ONE channel: startups / smallbiz / productivity.`")},{'\n'}
             {'}'});{'\n\n'}
-            {cm('// n8n вызывает его по HTTP:')}{'\n'}
+            {cm('// n8n calls it over HTTP:')}{'\n'}
             {cm('// POST http://localhost:8001/run')}{'\n'}
             {cm("// → { channel: 'smallbiz', reason: '...' }")}
           </Code>
         </div>
         <div className="flex-1 flex flex-col gap-4">
           <Bullet>
-            Тот же рецепт, что и hello-agent.ts в самом начале — model, instruction, всё.
+            Same recipe as hello-agent.ts at the start — model, instruction, everything.
           </Bullet>
           <Bullet>
-            Его вызывает <span className="text-[#00c4b4]">не человек через терминал</span>, а n8n через HTTP.
+            It's called by <span className="text-[#00c4b4]">not a human in the terminal</span>, but n8n over HTTP.
           </Bullet>
           <Bullet>
-            Модель решает что делать дальше — выбирает канал, а не просто обрабатывает то что дали. Это и есть агент.
+            The model decides what to do next — picks the channel rather than just processing what it was given. That's an agent.
           </Bullet>
         </div>
       </div>
@@ -898,12 +894,12 @@ function Slide25PlannerSlide({ slideNumber }: SlideProps) {
 
 function Slide26N8nDemo({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Close · Live демо" title="n8n: подсветка нод одна за другой" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Close · Live demo" title="n8n: nodes lighting up one by one" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-4 h-full justify-center max-w-xl">
         {[
-          { n: '1', text: 'Execute Workflow — оба adk web сервера уже подняты и прогреты' },
-          { n: '2', text: 'planner выбирает канал → портал отдаёт данные → lead-finder гоняет 3 агентов → n8n сортирует' },
-          { n: '3', text: 'Итоговый список — та же механика, что участники только что писали руками, без единого клика' },
+          { n: '1', text: 'Execute Workflow — both adk web servers are already up and warmed' },
+          { n: '2', text: 'planner picks channel → portal delivers data → lead-finder runs 3 agents → n8n sorts' },
+          { n: '3', text: 'Final list — the same mechanics the participants just wrote by hand, without a single click' },
         ].map((s) => (
           <div key={s.n} className="flex gap-4 items-start bg-white/[0.03] rounded-lg px-4 py-3">
             <div className="w-7 h-7 rounded-full bg-[#00c4b4]/20 border border-[#00c4b4]/40 flex items-center justify-center text-[#5eead4] font-bold text-[13px] shrink-0">
@@ -913,8 +909,8 @@ function Slide26N8nDemo({ slideNumber }: SlideProps) {
           </div>
         ))}
         <div className="bg-white/[0.04] rounded-lg p-4 text-[14px] text-white/60 font-light leading-6 italic mt-2">
-          "Ничего из этого не новый код — planner такой же LlmAgent, как и всё сегодня,
-          lead-finder — то, что вы только что построили."
+          "None of this is new code — planner is the same LlmAgent as everything today,
+          lead-finder is what you just built."
         </div>
       </div>
     </ContentSlide>
@@ -923,16 +919,16 @@ function Slide26N8nDemo({ slideNumber }: SlideProps) {
 
 function Slide27Question({ slideNumber }: SlideProps) {
   return (
-    <ContentSlide eyebrow="Close" title="Вопрос залу" slideNumber={slideNumber} footerLabel={FOOTER}>
+    <ContentSlide eyebrow="Close" title="Question for the room" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col h-full items-center justify-center gap-8">
         <div className="text-center bg-white/[0.04] rounded-xl border border-white/10 px-12 py-8">
           <div className="text-[20px] text-white font-light leading-8">
-            Что бы вы автоматизировали первым,<br />
-            <span className="text-[#2a5ff5]">будь у вас такой пайплайн за HTTP-эндпоинтом?</span>
+            What would you automate first<br />
+            <span className="text-[#2a5ff5]">with a pipeline like this behind an HTTP endpoint?</span>
           </div>
         </div>
         <div className="text-[14px] text-white/30 font-light">
-          Быстрый круг: по кругу, коротко — <em>"Что удивило?"</em>
+          Quick round: go around the room, briefly — <em>"What surprised you?"</em>
         </div>
       </div>
     </ContentSlide>
