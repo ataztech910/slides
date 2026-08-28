@@ -8,3 +8,5 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+
+speech-ru.md

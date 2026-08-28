@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react'
 import type { SlideDef, SlideProps } from '../engine/types'
 import { Code, ContentSlide, SectionSlide, TitleSlide, kw, st, cm, hl, ok } from '../engine/primitives'
 import speakerPhoto from '../assets/speaker.png'
+import organizerAndrii from '../assets/gdg/organizer-andrii.jpg'
+import organizerGleb from '../assets/gdg/organizer-gleb.jpg'
+import organizerVlad from '../assets/gdg/organizer-vlad.jpg'
+import eventUpcoming from '../assets/gdg/event-upcoming.jpg'
+import eventDevfest from '../assets/gdg/event-devfest.png'
 
 const FOOTER = 'Build AI Agents · 2026'
 
@@ -69,6 +74,95 @@ function ActivityTimer({ minutes }: { minutes: number }) {
         {done ? '0:00' : `${m}:${String(s).padStart(2, '0')}`}
       </span>
     </div>
+  )
+}
+
+// ─── GDG LINZ — community intro ────────────────────────────────────────────
+
+function Slide00aCommunity({ slideNumber }: SlideProps) {
+  return (
+    <ContentSlide eyebrow="Welcome" title="GDG Linz" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex flex-col items-center justify-center h-full gap-6 text-center">
+        <div className="text-[20px] text-[#374151] font-light leading-relaxed max-w-2xl">
+          A vibrant community of tech enthusiasts, innovators, and developers
+          passionate about all things Google and technology.
+        </div>
+        <div className="flex gap-8 text-[14px] text-[#4b5563]">
+          <div className="flex flex-col items-center gap-1">
+            <div className="text-[28px] font-semibold text-[#2a5ff5]">294</div>
+            <div className="uppercase tracking-widest text-[11px]">Members</div>
+          </div>
+          <div className="w-px bg-[#e5e7eb]" />
+          <div className="flex flex-col items-center gap-1">
+            <div className="text-[28px] font-semibold text-[#2a5ff5]">#13</div>
+            <div className="uppercase tracking-widest text-[11px]">Meetup</div>
+          </div>
+        </div>
+      </div>
+    </ContentSlide>
+  )
+}
+
+function Slide00aaAbout({ slideNumber }: SlideProps) {
+  return (
+    <ContentSlide eyebrow="Welcome" title="Who we are" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex flex-col gap-4 h-full justify-center max-w-2xl mx-auto">
+        <Bullet>📍 Linz, Austria · 294 members</Bullet>
+        <Bullet>Focus: Android, Flutter, Google Cloud, Firebase, and the wider Google ecosystem</Bullet>
+        <Bullet>Format: meetups, hands-on workshops, guest talks, and an annual DevFest hackathon</Bullet>
+        <Bullet>Mission: collaboration and knowledge sharing — a supportive environment to learn, connect, and grow</Bullet>
+        <Bullet>Backed by Google and Dynatrace</Bullet>
+      </div>
+    </ContentSlide>
+  )
+}
+
+function Slide00bOrganizers({ slideNumber }: SlideProps) {
+  const organizers = [
+    { name: 'Andrii Khrystian', role: 'GDG Organizer · Dynatrace', photo: organizerAndrii },
+    { name: 'Gleb Maliborsky', role: 'Organizer', photo: organizerGleb },
+    { name: 'Vladyslav Kravchenko', role: 'Organizer · Dynatrace', photo: organizerVlad },
+    { name: 'Andrei Tazetdinov', role: 'GDG Organizer · Dynatrace', photo: speakerPhoto },
+  ]
+  return (
+    <ContentSlide eyebrow="Welcome" title="Organizers" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex items-center justify-center h-full gap-10">
+        {organizers.map((o) => (
+          <div key={o.name} className="flex flex-col items-center gap-3">
+            <img
+              src={o.photo}
+              alt={o.name}
+              className="w-32 h-32 rounded-xl object-cover border border-[#e5e7eb]"
+            />
+            <div className="text-[16px] font-semibold text-[#111827] text-center">{o.name}</div>
+            <div className="text-[12px] text-[#4b5563] text-center">{o.role}</div>
+          </div>
+        ))}
+      </div>
+    </ContentSlide>
+  )
+}
+
+function Slide00cPastEvents({ slideNumber }: SlideProps) {
+  const events = [
+    { title: "Today: Build with AI — AI Agents Workshop", photo: eventUpcoming },
+    { title: 'DevFest Linz: Great AI Hackathon', photo: eventDevfest },
+  ]
+  return (
+    <ContentSlide eyebrow="Welcome" title="GDG Linz in action" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex items-center justify-center h-full gap-8">
+        {events.map((e) => (
+          <div key={e.title} className="flex flex-col items-center gap-3">
+            <img
+              src={e.photo}
+              alt={e.title}
+              className="w-[280px] h-[280px] rounded-xl object-cover border border-[#e5e7eb]"
+            />
+            <div className="text-[14px] text-[#374151] text-center max-w-[280px]">{e.title}</div>
+          </div>
+        ))}
+      </div>
+    </ContentSlide>
   )
 }
 
@@ -339,6 +433,38 @@ function Slide05Plan({ slideNumber }: SlideProps) {
   )
 }
 
+const REPO_QR_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h41v41H0z"/><path stroke="#000000" d="M4 4.5h7m3 0h2m1 0h1m1 0h5m2 0h2m2 0h7M4 5.5h1m5 0h1m1 0h2m2 0h1m1 0h4m1 0h1m1 0h4m1 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m4 0h4m1 0h1m1 0h1m3 0h1m3 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m2 0h2m1 0h4m2 0h2m2 0h3m1 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h2m3 0h1m2 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m6 0h1m1 0h1m1 0h1m1 0h2m2 0h1m2 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M17 11.5h1m1 0h1m1 0h2m2 0h1m2 0h1M4 12.5h1m1 0h1m1 0h1m1 0h1m2 0h2m2 0h2m2 0h1m3 0h3m4 0h1m2 0h1M4 13.5h1m3 0h1m3 0h1m1 0h4m4 0h1m1 0h2m2 0h4m3 0h2M4 14.5h3m2 0h2m1 0h3m3 0h1m2 0h1m3 0h2m1 0h1m2 0h1m2 0h3M7 15.5h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h3m1 0h3m4 0h1M5 16.5h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m5 0h4m2 0h1m1 0h2M4 17.5h1m2 0h1m1 0h1m6 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m4 0h2m1 0h1M4 18.5h1m2 0h2m1 0h1m1 0h1m2 0h1m1 0h2m1 0h3m2 0h1m3 0h1m1 0h6M4 19.5h1m1 0h2m6 0h1m1 0h2m3 0h1m3 0h1m1 0h2m1 0h2m3 0h1M4 20.5h1m2 0h4m5 0h1m2 0h1m1 0h1m1 0h3m2 0h3M5 21.5h4m4 0h1m1 0h1m2 0h1m2 0h2m1 0h1m3 0h4m4 0h1M4 22.5h2m1 0h2m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m2 0h2m4 0h3M5 23.5h2m1 0h2m7 0h3m1 0h1m2 0h5m1 0h3m2 0h2M4 24.5h1m1 0h1m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h3m2 0h3m2 0h1m2 0h1M5 25.5h1m3 0h1m4 0h2m1 0h6m1 0h3m1 0h3m3 0h3M4 26.5h1m2 0h6m6 0h2m3 0h3m2 0h3m2 0h3M5 27.5h1m1 0h1m3 0h1m2 0h4m1 0h1m1 0h1m3 0h2m1 0h1m1 0h1m1 0h1m2 0h1M4 28.5h1m1 0h1m1 0h1m1 0h1m1 0h1m7 0h2m2 0h2m2 0h5M12 29.5h2m1 0h2m3 0h1m4 0h1m2 0h1m3 0h2m1 0h2M4 30.5h7m2 0h1m1 0h4m2 0h1m3 0h1m1 0h2m1 0h1m1 0h1m1 0h3M4 31.5h1m5 0h1m5 0h1m4 0h6m1 0h1m3 0h1m3 0h1M4 32.5h1m1 0h3m1 0h1m1 0h2m2 0h2m4 0h2m1 0h1m2 0h6m1 0h1M4 33.5h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m1 0h2m1 0h1m7 0h1m3 0h1M4 34.5h1m1 0h3m1 0h1m1 0h3m5 0h1m4 0h1m6 0h1m1 0h1m1 0h1M4 35.5h1m5 0h1m2 0h1m2 0h2m1 0h1m1 0h2m1 0h6m2 0h1m2 0h1M4 36.5h7m1 0h1m1 0h1m2 0h2m1 0h2m1 0h3m1 0h4m1 0h5"/></svg>'
+
+function Slide05aRepoLink({ slideNumber }: SlideProps) {
+  return (
+    <ContentSlide eyebrow="Intro · Setup" title="Get the repo" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex flex-col h-full gap-4">
+        <div className="flex items-center justify-center flex-1 gap-8">
+          <div
+            className="w-[170px] h-[170px] rounded-lg border border-[#e5e7eb] p-3 shrink-0"
+            dangerouslySetInnerHTML={{ __html: REPO_QR_SVG }}
+          />
+          <div className="flex flex-col gap-3 flex-1 min-w-0">
+            <div className="text-[13px] text-[#4b5563] uppercase tracking-widest">Clone this before Block 1</div>
+            <div className="text-[15px] font-mono text-[#2563eb] break-all leading-6">
+              github.com/ataztech910/<wbr />build_ai_agents_workshop_2026
+            </div>
+            <div className="text-[13px] font-mono text-[#4b5563]">
+              short link: <span className="text-[#2563eb]">shorturl.at/ewW6D</span>
+            </div>
+            <pre className="bg-[#f1f5f9] rounded-lg p-3 text-[11px] leading-5 text-[#1e293b] whitespace-pre-wrap break-all font-mono">
+{`git clone https://github.com/ataztech910/build_ai_agents_workshop_2026
+cd build_ai_agents_workshop_2026/workshop-files/workshop/workshop
+npm install`}
+            </pre>
+          </div>
+        </div>
+        <ActivityTimer minutes={10} />
+      </div>
+    </ContentSlide>
+  )
+}
+
 function Slide05bPickModel({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Intro · Setup" title="Connecting a model — one line to switch" slideNumber={slideNumber} footerLabel={FOOTER}>
@@ -366,7 +492,7 @@ function Slide05bPickModel({ slideNumber }: SlideProps) {
             <div className="flex items-start gap-3 bg-[#f8fafc] rounded-lg px-4 py-2">
               <span className="text-[#00c4b4] font-mono text-[13px] shrink-0 w-24">Kitana</span>
               <div className="text-[13px] text-[#374151] font-light leading-5">
-                No API key. Uses your Claude CLI subscription or local Ollama.<br />
+                My own personal project — optional, not required. Uses your Claude CLI subscription or local Ollama.<br />
                 Swap the return line — same code, different provider.
               </div>
             </div>
@@ -385,7 +511,9 @@ function Slide05bPickModel({ slideNumber }: SlideProps) {
           </Code>
           <div className="text-[12px] text-[#4b5563] leading-5">
             Same <span className="font-mono text-[#00c4b4]">BaseLlm</span> interface ADK expects —
-            Gemini, Kitana, or anything else plugs in identically.
+            Gemini, Kitana, or anything else plugs in identically. For your own scripts, that's
+            ordinary individual use; if you ever ship a tool that routes <em>other people's</em> requests
+            through their subscription login, Anthropic's docs ask you to use API-key auth instead.
           </div>
         </div>
       </div>
@@ -918,6 +1046,10 @@ function Slide16LeadFinderArch({ slideNumber }: SlideProps) {
             One variant = FAKE_COMMENTS, other = real API
           </Bullet>
           <Bullet>ICP — your ideal customer. Change it and run again — different leads from the same comments</Bullet>
+          <Bullet>
+            Real platforms work too (Telegram/YouTube/Reddit, official APIs) — same shape as the portal,
+            — this is real, unstaged output from a live channel, pulled during prep for this workshop: <span className="italic">"great news"</span>
+          </Bullet>
         </div>
       </div>
     </ContentSlide>
@@ -1206,6 +1338,10 @@ function Slide27Question({ slideNumber }: SlideProps) {
 
 export const EXAMPLE_SLIDES: SlideDef[] = [
   // Intro (0–6)
+  { Component: Slide00aCommunity },
+  { Component: Slide00aaAbout },
+  { Component: Slide00bOrganizers },
+  { Component: Slide00cPastEvents },
   { Component: Slide01Title },
   { Component: Slide02WhatIsAgent },
   { Component: Slide02bAgentLimits },
@@ -1213,6 +1349,7 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
   { Component: Slide03AgentLoop },
   { Component: Slide04WhyAdk },
   { Component: Slide05Plan },
+  { Component: Slide05aRepoLink },
   { Component: Slide05bPickModel },
   { Component: Slide05cGeminiSetup },
   { Component: Slide05dKitanaSetup },
@@ -1249,38 +1386,43 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
 
 // Cue points in seconds from talk start (total ~165 min = 9900s)
 export const EXAMPLE_CUE_POINTS_SEC = [
-  0,     // 01 Title
-  20,    // 02 What is agent (three levels — theory first)
-  55,    // 02b Agent limits (reality check)
-  90,    // 01b Raw demo (claude -p live — after theory)
-  150,   // 03 Agent loop
-  330,   // 04 Why ADK
-  480,   // 05 Plan
-  540,   // 05b pickModel — model setup
-  560,   // 05c Gemini free tier setup
-  580,   // 05d Kitana setup
-  600,   // 06 Block 1 section      ← 10 min mark
-  660,   // 06b ADK building blocks
-  720,   // 07 Recipe (live coding)
-  900,   // 08 instruction = contract (live)
-  960,   // 08b Zod schema intro
-  1020,  // 09 FunctionTool (live)
-  1200,  // 10 Write Block 1        ← 20 min, 18 min timer
-  2280,  // 11 Block 2 section      ← 38 min (10+25+3 buffer)
-  2400,  // 12 One vs many (experiment)
-  3000,  // 13 SequentialAgent code (live, 5 min)
-  3300,  // 14 Write Block 2        ← 55 min, 15 min timer
-  4200,  // 15 Block 3 section      ← 70 min (after 25-min break)
-  4320,  // 16 Lead Finder arch
-  4500,  // 17 Demo checklist (live)
-  4800,  // 18 Write Block 3        ← 80 min, 17 min timer
-  5820,  // 19 adk web              ← 97 min
-  6120,  // 20 Block 4 section      ← 102 min
-  6240,  // 21 Own agent assignment
-  6360,  // 22 Write Block 4        ← 106 min, 15 min timer
-  7260,  // 23 Close section        ← 121 min
-  7380,  // 24 Pipeline
-  7500,  // 25 Planner
-  7680,  // 26 n8n demo
-  7800,  // 27 Question             ← 130 min
+  0,     // 00a GDG Linz intro
+  20,    // 00aa About (who we are)
+  50,    // 00b Organizers
+  80,    // 00c Past events
+  110,     // 01 Title
+  130,    // 02 What is agent (three levels — theory first)
+  165,    // 02b Agent limits (reality check)
+  200,    // 01b Raw demo (claude -p live — after theory)
+  260,   // 03 Agent loop
+  440,   // 04 Why ADK
+  590,   // 05 Plan
+  610,   // 05a Repo link (QR code)
+  650,   // 05b pickModel — model setup
+  670,   // 05c Gemini free tier setup
+  690,   // 05d Kitana setup
+  710,   // 06 Block 1 section      ← 10 min mark
+  770,   // 06b ADK building blocks
+  830,   // 07 Recipe (live coding)
+  1010,   // 08 instruction = contract (live)
+  1070,   // 08b Zod schema intro
+  1130,  // 09 FunctionTool (live)
+  1310,  // 10 Write Block 1        ← 20 min, 18 min timer
+  2390,  // 11 Block 2 section      ← 38 min (10+25+3 buffer)
+  2510,  // 12 One vs many (experiment)
+  3110,  // 13 SequentialAgent code (live, 5 min)
+  3410,  // 14 Write Block 2        ← 55 min, 15 min timer
+  4310,  // 15 Block 3 section      ← 70 min (after 25-min break)
+  4430,  // 16 Lead Finder arch
+  4610,  // 17 Demo checklist (live)
+  4910,  // 18 Write Block 3        ← 80 min, 17 min timer
+  5930,  // 19 adk web              ← 97 min
+  6230,  // 20 Block 4 section      ← 102 min
+  6350,  // 21 Own agent assignment
+  6470,  // 22 Write Block 4        ← 106 min, 15 min timer
+  7370,  // 23 Close section        ← 121 min
+  7490,  // 24 Pipeline
+  7610,  // 25 Planner
+  7790,  // 26 n8n demo
+  7910,  // 27 Question             ← 130 min
 ]
