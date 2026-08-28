@@ -7,6 +7,9 @@ import organizerGleb from '../assets/gdg/organizer-gleb.jpg'
 import organizerVlad from '../assets/gdg/organizer-vlad.jpg'
 import eventUpcoming from '../assets/gdg/event-upcoming.jpg'
 import eventDevfest from '../assets/gdg/event-devfest.png'
+import wifiWelcome from '../assets/wifi/wifi-1-welcome.jpg'
+import wifiRegister from '../assets/wifi/wifi-2-register.jpg'
+import wifiWaiting from '../assets/wifi/wifi-3-waiting.jpg'
 
 const FOOTER = 'Build AI Agents · 2026'
 
@@ -14,7 +17,7 @@ const FOOTER = 'Build AI Agents · 2026'
 
 function Bullet({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-3 items-start text-[16px] text-[#1f2937] font-light leading-snug">
+    <div className="flex gap-3 items-start text-[16px] text-[#1f2937] font-medium leading-snug">
       <span className="text-[#2a5ff5] mt-0.5 shrink-0">▸</span>
       <span>{children}</span>
     </div>
@@ -58,7 +61,7 @@ function ActivityTimer({ minutes }: { minutes: number }) {
 
   return (
     <div className="flex items-center gap-3 bg-[#111827] rounded-lg px-4 py-2.5">
-      <span className="text-[13px] text-white/50 font-light shrink-0">
+      <span className="text-[13px] text-white/50 font-medium shrink-0">
         {done ? "✓ time's up" : started ? 'remaining' : 'starts in 1s…'}
       </span>
       <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
@@ -83,7 +86,7 @@ function Slide00aCommunity({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Welcome" title="GDG Linz" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col items-center justify-center h-full gap-6 text-center">
-        <div className="text-[20px] text-[#374151] font-light leading-relaxed max-w-2xl">
+        <div className="text-[20px] text-[#374151] font-medium leading-relaxed max-w-2xl">
           A vibrant community of tech enthusiasts, innovators, and developers
           passionate about all things Google and technology.
         </div>
@@ -173,13 +176,58 @@ function Slide01Title({ slideNumber }: SlideProps) {
     <TitleSlide
       eyebrow="Workshop · 2026"
       title="Build AI Agents from Scratch"
-      subtitle="Google ADK · ~2h 45min"
+      subtitle="Google ADK"
       speakerPhoto={speakerPhoto}
       speakerName="Andrei Tazetdinov"
       speakerRole="Dynatrace"
       slideNumber={slideNumber}
       footerLabel={FOOTER}
     />
+  )
+}
+
+function Slide01aWifi({ slideNumber }: SlideProps) {
+  const steps = [
+    { img: wifiWelcome, label: '1 · Register' },
+    { img: wifiRegister, label: '2 · Fill the form' },
+    { img: wifiWaiting, label: '3 · Wait for approval' },
+  ]
+  return (
+    <ContentSlide eyebrow="Housekeeping" title="Wi-Fi access — Dynatrace-Guest" slideNumber={slideNumber} footerLabel={FOOTER}>
+      <div className="flex flex-col items-center justify-center h-full gap-4">
+        <div className="text-[14px] text-[#374151] font-medium text-center max-w-[620px]">
+          Join <span className="text-[#2563eb] font-semibold">Dynatrace-Guest</span>, register, and put my email in{' '}
+          <span className="text-[#2563eb] font-semibold">"Dynatrace Buddy"</span> — I approve the request on my side.
+        </div>
+        <div className="flex items-center gap-2">
+          {steps.map((s, i) => (
+            <div key={s.label} className="flex items-center gap-2 shrink-0">
+              <div className="flex flex-col items-center gap-1.5 w-[210px] min-w-0 shrink-0">
+                <div className="text-[20px] text-[#4b5563] font-medium w-full text-center leading-tight break-words">{s.label}</div>
+                <div className="relative w-[210px] rounded-lg border border-[#d1d5db] shadow-sm overflow-hidden">
+                  <img src={s.img} alt={s.label} className="w-full h-auto block" />
+                  {i === 1 && (
+                    <div
+                      className="absolute rounded border-2 border-[#ef4444]"
+                      style={{ left: '16%', top: '54.5%', width: '68%', height: '7.5%', boxShadow: '0 0 0 9999px rgba(0,0,0,0.35)' }}
+                    />
+                  )}
+                </div>
+                {i === 1 && (
+                  <div className="text-[20px] font-semibold text-[#ef4444] w-full text-center leading-tight break-words">
+                    ↑ enter my email here
+                  </div>
+                )}
+              </div>
+              {i < steps.length - 1 && <div className="text-[24px] text-[#9ca3af] mb-6">→</div>}
+            </div>
+          ))}
+        </div>
+        <div className="text-[13px] text-[#4b5563] font-mono">
+          Dynatrace buddy email: <span className="text-[#2563eb]">andrei.tazetdinov@dynatrace.com</span>
+        </div>
+      </div>
+    </ContentSlide>
   )
 }
 
@@ -227,7 +275,7 @@ function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
         {/* Level 1 */}
         <div className="flex-1 flex flex-col gap-2 bg-[#f5f7fa] rounded-lg p-4">
           <Tag color="#4ade80">Single Call</Tag>
-          <div className="text-[13px] text-[#4b5563] font-light">Question → answer</div>
+          <div className="text-[13px] text-[#4b5563] font-medium">Question → answer</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-2">
               <span className="bg-[#f0f4f8] rounded px-2 py-1 text-[#374151]">Input</span>
@@ -245,7 +293,7 @@ function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
         {/* Level 2 */}
         <div className="flex-1 flex flex-col gap-2 bg-[#f5f7fa] rounded-lg p-4">
           <Tag color="#fbbf24">Workflow</Tag>
-          <div className="text-[13px] text-[#4b5563] font-light">Fixed pipeline</div>
+          <div className="text-[13px] text-[#4b5563] font-medium">Fixed pipeline</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-1 flex-wrap">
               <span className="bg-[#2a5ff5]/30 rounded px-2 py-1 text-[#2563eb]">LLM 1</span>
@@ -263,7 +311,7 @@ function Slide02WhatIsAgent({ slideNumber }: SlideProps) {
         {/* Level 3 */}
         <div className="flex-1 flex flex-col gap-2 bg-[#2a5ff5]/10 border border-[#2a5ff5]/30 rounded-lg p-4">
           <Tag color="#a78bfa">Agent</Tag>
-          <div className="text-[13px] text-[#4b5563] font-light">Loop until done</div>
+          <div className="text-[13px] text-[#4b5563] font-medium">Loop until done</div>
           <div className="flex-1 flex flex-col justify-center gap-2 text-[13px]">
             <div className="flex items-center gap-1 flex-wrap">
               <span className="bg-[#a78bfa]/30 rounded px-2 py-1 text-[#7c3aed]">LLM decides</span>
@@ -297,7 +345,7 @@ function Slide02bAgentLimits({ slideNumber }: SlideProps) {
           {items.map((item) => (
             <div key={item.label} className="bg-[#f5f7fa] rounded-lg p-5 flex flex-col gap-2">
               <div className="text-[13px] font-semibold uppercase tracking-widest text-[#1f2937]">{item.label}</div>
-              <div className="text-[13px] text-[#4b5563] font-light leading-6">{item.desc}</div>
+              <div className="text-[13px] text-[#4b5563] font-medium leading-6">{item.desc}</div>
             </div>
           ))}
         </div>
@@ -321,7 +369,7 @@ function Slide03AgentLoop({ slideNumber }: SlideProps) {
           </div>
           <div className="text-[#2a5ff5] text-xl">→</div>
           <div className="flex flex-col items-center gap-1">
-            <div className="bg-[#2a5ff5]/40 border border-[#2a5ff5] rounded-lg px-6 py-3 text-[15px] text-[#111827] font-light">
+            <div className="bg-[#2a5ff5]/40 border border-[#2a5ff5] rounded-lg px-6 py-3 text-[15px] text-[#111827] font-medium">
               Model decides
             </div>
             <div className="text-[11px] text-[#4b5563]">what's next?</div>
@@ -398,7 +446,7 @@ function Slide04WhyAdk({ slideNumber }: SlideProps) {
           ].map(([name, desc]) => (
             <div key={name} className="flex gap-2 items-start text-[14px]">
               <span className="text-[#00c4b4] font-mono shrink-0">{name}</span>
-              <span className="text-[#4b5563] font-light">— {desc}</span>
+              <span className="text-[#4b5563] font-medium">— {desc}</span>
             </div>
           ))}
         </div>
@@ -423,7 +471,7 @@ function Slide05Plan({ slideNumber }: SlideProps) {
         {rows.map((r) => (
           <div key={r.block} className="flex items-center gap-4 bg-[#f8fafc] rounded px-4 py-2.5">
             <span className="w-36 text-[13px] font-semibold shrink-0" style={{ color: r.color }}>{r.block}</span>
-            <span className="flex-1 text-[13px] text-[#374151] font-light">{r.what}</span>
+            <span className="flex-1 text-[13px] text-[#374151] font-medium">{r.what}</span>
             <span className="text-[12px] text-[#4b5563] shrink-0">{r.time}</span>
           </div>
         ))}
@@ -484,14 +532,14 @@ function Slide05bPickModel({ slideNumber }: SlideProps) {
           <div className="flex flex-col gap-2">
             <div className="flex items-start gap-3 bg-[#f8fafc] rounded-lg px-4 py-2">
               <span className="text-[#fbbf24] font-mono text-[13px] shrink-0 w-24">Gemini</span>
-              <div className="text-[13px] text-[#374151] font-light leading-5">
+              <div className="text-[13px] text-[#374151] font-medium leading-5">
                 Default. Needs <span className="text-[#1f2937] font-mono">GOOGLE_GENAI_API_KEY</span> in <span className="font-mono text-[#1f2937]">.env</span>.<br />
                 Copy from <span className="font-mono text-[#1f2937]">.env.example</span> and paste your key.
               </div>
             </div>
             <div className="flex items-start gap-3 bg-[#f8fafc] rounded-lg px-4 py-2">
               <span className="text-[#00c4b4] font-mono text-[13px] shrink-0 w-24">Kitana</span>
-              <div className="text-[13px] text-[#374151] font-light leading-5">
+              <div className="text-[13px] text-[#374151] font-medium leading-5">
                 My own personal project — optional, not required. Uses your Claude CLI subscription or local Ollama.<br />
                 Swap the return line — same code, different provider.
               </div>
@@ -534,7 +582,7 @@ function Slide05cGeminiSetup({ slideNumber }: SlideProps) {
             <div key={s.n} className="flex gap-3 items-start">
               <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">{s.n}</div>
               <div>
-                <div className="text-[14px] text-[#111827] font-light leading-5">{s.label}</div>
+                <div className="text-[14px] text-[#111827] font-medium leading-5">{s.label}</div>
                 {s.lines.map((l) => <div key={l} className="text-[12px] text-[#4b5563] leading-4">{l}</div>)}
               </div>
             </div>
@@ -581,7 +629,7 @@ function Slide05dKitanaSetup({ slideNumber }: SlideProps) {
           <div className="flex gap-3 items-start">
             <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">1</div>
             <div className="flex-1 flex flex-col gap-1.5">
-              <div className="text-[14px] text-[#111827] font-light leading-5">Install Claude CLI</div>
+              <div className="text-[14px] text-[#111827] font-medium leading-5">Install Claude CLI</div>
               <Code compact>npm install -g @anthropic-ai/claude-code</Code>
               <div className="text-[12px] text-[#4b5563] leading-4">Then run <span className="font-mono text-[#4b5563]">claude</span> once — opens browser, sign in to Claude.ai.</div>
             </div>
@@ -589,14 +637,14 @@ function Slide05dKitanaSetup({ slideNumber }: SlideProps) {
           <div className="flex gap-3 items-start">
             <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">2</div>
             <div>
-              <div className="text-[14px] text-[#111827] font-light leading-5">@kitana-sdk/adk already in package.json</div>
+              <div className="text-[14px] text-[#111827] font-medium leading-5">@kitana-sdk/adk already in package.json</div>
               <div className="text-[12px] text-[#4b5563] leading-4"><span className="font-mono text-[#4b5563]">npm install</span> in the workshop root covers it. No extra step.</div>
             </div>
           </div>
           <div className="flex gap-3 items-start">
             <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 border border-[#2a5ff5]/50 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">3</div>
             <div className="flex-1 flex flex-col gap-1.5">
-              <div className="text-[14px] text-[#111827] font-light leading-5">Switch pickModel() — one line</div>
+              <div className="text-[14px] text-[#111827] font-medium leading-5">Switch pickModel() — one line</div>
               <Code compact>
                 {cm('// return "gemini-2.0-flash";')}{'\n'}
                 {kw('return')} {kw('new')} {hl('KitanaLlm')}({'{'} model: {st('"auto"')} {'}'})
@@ -653,7 +701,7 @@ function Slide06bAdkConcepts({ slideNumber }: SlideProps) {
           {blocks.map((b) => (
             <div key={b.name} className="flex items-start gap-3 bg-[#f8fafc] rounded-lg px-4 py-2.5">
               <span className="font-mono text-[13px] font-semibold shrink-0 w-36" style={{ color: b.color }}>{b.name}</span>
-              <span className="text-[13px] text-[#374151] font-light leading-5">{b.desc}</span>
+              <span className="text-[13px] text-[#374151] font-medium leading-5">{b.desc}</span>
             </div>
           ))}
         </div>
@@ -692,7 +740,7 @@ function Slide07Recipe({ slideNumber }: SlideProps) {
                 {s.n}
               </div>
               <div>
-                <div className="text-[15px] text-[#111827] font-light">{s.label}</div>
+                <div className="text-[15px] text-[#111827] font-medium">{s.label}</div>
                 <div className="text-[12px] text-[#4b5563]">{s.desc}</div>
               </div>
             </div>
@@ -728,7 +776,7 @@ function Slide08InstructionContract({ slideNumber }: SlideProps) {
         <div className="flex-1 flex flex-col gap-4">
           <div className="bg-[#f87171]/10 border border-[#f87171]/30 rounded-lg p-4">
             <div className="text-[12px] text-[#dc2626] mb-2 uppercase tracking-widest">Without instruction</div>
-            <div className="text-[14px] text-[#4b5563] font-light leading-6">
+            <div className="text-[14px] text-[#4b5563] font-medium leading-6">
               "Hi! How can I help you today?"<br />
               "Sure, I'd be happy to assist..."<br />
               <span className="text-[#4b5563] italic">Generic. Unpredictable. Different every time.</span>
@@ -736,7 +784,7 @@ function Slide08InstructionContract({ slideNumber }: SlideProps) {
           </div>
           <div className="bg-[#4ade80]/10 border border-[#4ade80]/30 rounded-lg p-4">
             <div className="text-[12px] text-[#16a34a] mb-2 uppercase tracking-widest">With instruction</div>
-            <div className="text-[14px] text-[#4b5563] font-light leading-6">
+            <div className="text-[14px] text-[#4b5563] font-medium leading-6">
               The agent knows who it is, what it can do, how to respond.<br />
               <span className="text-[#4b5563] italic">Consistent. Predictable. A contract.</span>
             </div>
@@ -750,7 +798,7 @@ function Slide08InstructionContract({ slideNumber }: SlideProps) {
             {cm('// Step 2: fill it in and compare the output')}{'\n'}
             instruction: {st('"You are an assistant..."')}
           </Code>
-          <div className="text-[13px] text-[#4b5563] font-light leading-6">
+          <div className="text-[13px] text-[#4b5563] font-medium leading-6">
             Without instruction the model behaves like a general-purpose chatbot.<br />
             Instruction is what makes the agent a specialist.
           </div>
@@ -765,7 +813,7 @@ function Slide08bZod({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Block 1" title="Zod — describing the shape of data" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex gap-6 h-full items-start pt-1">
         <div className="flex-1 flex flex-col gap-4">
-          <div className="text-[13px] text-[#4b5563] font-light leading-6">
+          <div className="text-[13px] text-[#4b5563] font-medium leading-6">
             Zod is a TypeScript schema library. You describe what shape your data should have — Zod validates it at runtime and infers the TypeScript types automatically.
           </div>
           <div className="flex flex-col gap-2.5">
@@ -907,7 +955,7 @@ function Slide12OneVsMany({ slideNumber }: SlideProps) {
             {st('"Find leads + write offers + validate"')}{'\n'}
             {cm('// single LlmAgent does everything')}
           </Code>
-          <div className="flex-1 text-[13px] text-[#4b5563] font-light leading-6">
+          <div className="flex-1 text-[13px] text-[#4b5563] font-medium leading-6">
             The model optimizes ALL tasks at once — and compromises on each.
             The validator can't criticize what it just wrote itself.
           </div>
@@ -919,7 +967,7 @@ function Slide12OneVsMany({ slideNumber }: SlideProps) {
             analyst {ok('→')} copywriter {ok('→')} validator{'\n'}
             {cm('// each optimizes one task')}
           </Code>
-          <div className="flex-1 text-[13px] text-[#4b5563] font-light leading-6">
+          <div className="flex-1 text-[13px] text-[#4b5563] font-medium leading-6">
             Each agent approaches the task fresh.<br />
             <span className="text-[#374151]">
               "A model in one prompt compromises on each task.
@@ -972,13 +1020,13 @@ function Slide14WriteBlock2({ slideNumber }: SlideProps) {
         <div className="flex gap-3">
           <div className="flex-1 bg-[#f5f7fa] rounded-lg p-3 flex flex-col gap-1.5">
             <Tag color="#a78bfa">researcher</Tag>
-            <div className="text-[13px] text-[#4b5563] font-light">receives topic</div>
+            <div className="text-[13px] text-[#4b5563] font-medium">receives topic</div>
             <div className="text-[13px] text-[#00c4b4] font-mono">{'→ { "facts": ["...", "...", "..."] }'}</div>
             <div className="text-[12px] text-[#4b5563]">strict JSON, no surrounding text</div>
           </div>
           <div className="flex-1 bg-[#f5f7fa] rounded-lg p-3 flex flex-col gap-1.5">
             <Tag color="#4ade80">editor</Tag>
-            <div className="text-[13px] text-[#4b5563] font-light">receives facts</div>
+            <div className="text-[13px] text-[#4b5563] font-medium">receives facts</div>
             <div className="text-[13px] text-[#00c4b4] font-mono">→ one paragraph in prose</div>
           </div>
         </div>
@@ -1031,7 +1079,7 @@ function Slide16LeadFinderArch({ slideNumber }: SlideProps) {
                 >
                   [{a.name}]
                 </div>
-                <div className="text-[13px] text-[#4b5563] font-light">{a.role}</div>
+                <div className="text-[13px] text-[#4b5563] font-medium">{a.role}</div>
               </div>
             ))}
           </div>
@@ -1069,10 +1117,10 @@ function Slide17DemoChecklist({ slideNumber }: SlideProps) {
             <div className="w-7 h-7 rounded-full bg-[#2a5ff5]/30 flex items-center justify-center text-[#2563eb] font-bold text-[13px] shrink-0">
               {s.n}
             </div>
-            <div className="text-[14px] text-[#374151] font-light leading-6">{s.text}</div>
+            <div className="text-[14px] text-[#374151] font-medium leading-6">{s.text}</div>
           </div>
         ))}
-        <div className="text-[13px] text-[#4b5563] font-light mt-2">
+        <div className="text-[13px] text-[#4b5563] font-medium mt-2">
           Result: leads_result.json a second time — about different, real people. Not a line changed in the three agents.
         </div>
       </div>
@@ -1092,7 +1140,7 @@ function Slide18WriteBlock3({ slideNumber }: SlideProps) {
           ].map((s) => (
             <div key={s.step} className="flex-1 bg-[#f8fafc] rounded-lg p-3 flex flex-col gap-1">
               <div className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: s.color }}>{s.step}</div>
-              <div className="text-[12px] text-[#374151] font-light leading-5">{s.desc}</div>
+              <div className="text-[12px] text-[#374151] font-medium leading-5">{s.desc}</div>
             </div>
           ))}
         </div>
@@ -1128,7 +1176,7 @@ function Slide19AdkWeb({ slideNumber }: SlideProps) {
           </div>
         </div>
         <div className="flex-1 flex flex-col justify-center gap-3">
-          <div className="bg-[#f5f7fa] rounded-lg p-4 text-[13px] text-[#4b5563] font-light leading-6">
+          <div className="bg-[#f5f7fa] rounded-lg p-4 text-[13px] text-[#4b5563] font-medium leading-6">
             adk web = the same agent behind an HTTP endpoint.<br />
             In Close, n8n will hit exactly this endpoint — no new code, same agent.
           </div>
@@ -1157,7 +1205,7 @@ function Slide21OwnAgentAssignment({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Block 4" title="Assignment" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-5 pt-2">
         <div className="text-center py-4 bg-[#f5f7fa] rounded-xl border border-[#e5e7eb]">
-          <div className="text-[22px] text-[#111827] font-light leading-relaxed">
+          <div className="text-[22px] text-[#111827] font-medium leading-relaxed">
             Take a task from your work<br />that you do manually.<br />
             <span className="text-[#2a5ff5]">Write an agent.</span>
           </div>
@@ -1175,11 +1223,11 @@ function Slide21OwnAgentAssignment({ slideNumber }: SlideProps) {
           <div className="flex-1 flex flex-col gap-2">
             <div className="text-[12px] text-[#4b5563] uppercase tracking-widest">Your toolkit</div>
             <div className="text-[14px] font-mono text-[#2a5ff5]">LlmAgent</div>
-            <div className="text-[13px] text-[#4b5563] font-light -mt-1">model + instruction — enough for most tasks</div>
+            <div className="text-[13px] text-[#4b5563] font-medium -mt-1">model + instruction — enough for most tasks</div>
             <div className="text-[14px] font-mono text-[#00c4b4] mt-1">FunctionTool</div>
-            <div className="text-[13px] text-[#4b5563] font-light -mt-1">if the agent needs an external tool</div>
+            <div className="text-[13px] text-[#4b5563] font-medium -mt-1">if the agent needs an external tool</div>
             <div className="text-[14px] font-mono text-[#a78bfa] mt-1">SequentialAgent</div>
-            <div className="text-[13px] text-[#4b5563] font-light -mt-1">if the task splits into clear steps</div>
+            <div className="text-[13px] text-[#4b5563] font-medium -mt-1">if the task splits into clear steps</div>
           </div>
         </div>
         <Code>
@@ -1195,16 +1243,16 @@ function Slide22WriteBlock4({ slideNumber }: SlideProps) {
   return (
     <ContentSlide eyebrow="Block 4 · Hands-on" title="Your Agent — 15 minutes" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col gap-5 h-full justify-center">
-        <div className="text-[15px] text-[#4b5563] font-light leading-7">
+        <div className="text-[15px] text-[#4b5563] font-medium leading-7">
           No skeleton. No instructions. No right answer.<br />
           Just your task and what you already know.
         </div>
         <div className="flex gap-3">
-          <div className="flex-1 bg-[#f8fafc] rounded-lg p-4 text-[13px] text-[#4b5563] font-light leading-6">
+          <div className="flex-1 bg-[#f8fafc] rounded-lg p-4 text-[13px] text-[#4b5563] font-medium leading-6">
             <span className="text-[#1f2937]">Helping frame the task</span> matters more than helping with code.
             The facilitator helps find the right input/output — not syntax.
           </div>
-          <div className="flex-1 bg-[#f8fafc] rounded-lg p-4 text-[13px] text-[#4b5563] font-light leading-6">
+          <div className="flex-1 bg-[#f8fafc] rounded-lg p-4 text-[13px] text-[#4b5563] font-medium leading-6">
             <span className="text-[#1f2937]">pickModel()</span> works the same as everywhere —
             one line to switch the provider.
           </div>
@@ -1244,13 +1292,13 @@ function Slide24ClosePipeline({ slideNumber }: SlideProps) {
               {i > 0 && <div className="text-[#4b5563] ml-5 text-lg leading-4">↓</div>}
               <div className="flex items-center gap-3 bg-[#f5f7fa] rounded-lg px-4 py-2.5 w-full">
                 <span className="font-mono text-[14px] shrink-0" style={{ color: s.color }}>[{s.label}]</span>
-                <span className="text-[13px] text-[#4b5563] font-light flex-1">{s.desc}</span>
+                <span className="text-[13px] text-[#4b5563] font-medium flex-1">{s.desc}</span>
                 <span className="text-[11px] bg-white/5 px-2 py-0.5 rounded text-[#4b5563]">{s.tag}</span>
               </div>
             </div>
           ))}
         </div>
-        <div className="text-[13px] text-[#4b5563] font-light mt-1">
+        <div className="text-[13px] text-[#4b5563] font-medium mt-1">
           Two independent ADK agents behind two HTTP endpoints (adk web). n8n calls both in sequence — orchestration in n8n, not new TypeScript code.
         </div>
       </div>
@@ -1304,10 +1352,10 @@ function Slide26N8nDemo({ slideNumber }: SlideProps) {
             <div className="w-7 h-7 rounded-full bg-[#00c4b4]/20 border border-[#00c4b4]/40 flex items-center justify-center text-[#0e7490] font-bold text-[13px] shrink-0">
               {s.n}
             </div>
-            <div className="text-[14px] text-[#374151] font-light leading-6">{s.text}</div>
+            <div className="text-[14px] text-[#374151] font-medium leading-6">{s.text}</div>
           </div>
         ))}
-        <div className="bg-[#f5f7fa] rounded-lg p-4 text-[14px] text-[#4b5563] font-light leading-6 italic mt-2">
+        <div className="bg-[#f5f7fa] rounded-lg p-4 text-[14px] text-[#4b5563] font-medium leading-6 italic mt-2">
           "None of this is new code — planner is the same LlmAgent as everything today,
           lead-finder is what you just built."
         </div>
@@ -1321,12 +1369,12 @@ function Slide27Question({ slideNumber }: SlideProps) {
     <ContentSlide eyebrow="Close" title="Question for the room" slideNumber={slideNumber} footerLabel={FOOTER}>
       <div className="flex flex-col h-full items-center justify-center gap-8">
         <div className="text-center bg-[#f5f7fa] rounded-xl border border-[#e5e7eb] px-12 py-8">
-          <div className="text-[20px] text-[#111827] font-light leading-8">
+          <div className="text-[20px] text-[#111827] font-medium leading-8">
             What would you automate first<br />
             <span className="text-[#2a5ff5]">with a pipeline like this behind an HTTP endpoint?</span>
           </div>
         </div>
-        <div className="text-[14px] text-[#4b5563] font-light">
+        <div className="text-[14px] text-[#4b5563] font-medium">
           Quick round: go around the room, briefly — <em>"What surprised you?"</em>
         </div>
       </div>
@@ -1343,6 +1391,7 @@ export const EXAMPLE_SLIDES: SlideDef[] = [
   { Component: Slide00bOrganizers },
   { Component: Slide00cPastEvents },
   { Component: Slide01Title },
+  { Component: Slide01aWifi },
   { Component: Slide02WhatIsAgent },
   { Component: Slide02bAgentLimits },
   { Component: Slide01bRawDemo },
@@ -1391,6 +1440,7 @@ export const EXAMPLE_CUE_POINTS_SEC = [
   50,    // 00b Organizers
   80,    // 00c Past events
   110,     // 01 Title
+  118,    // 01a Wi-Fi access
   130,    // 02 What is agent (three levels — theory first)
   165,    // 02b Agent limits (reality check)
   200,    // 01b Raw demo (claude -p live — after theory)

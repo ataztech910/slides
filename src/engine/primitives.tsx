@@ -51,7 +51,7 @@ export function ContentSlide({
       {eyebrow && (
         <div className="text-[11px] text-[#9ca3af] uppercase tracking-widest mb-1">{eyebrow}</div>
       )}
-      <h2 className="text-[26px] font-light text-[#111827] mb-8 border-l-[3px] border-[#1a73e8] pl-3">
+      <h2 className="text-[26px] font-semibold text-[#111827] mb-8 border-l-[3px] border-[#1a73e8] pl-3">
         {title}
       </h2>
       <div className="flex-1 min-h-0 overflow-hidden">{children}</div>
@@ -78,7 +78,7 @@ export function SectionSlide({
     <div className="w-full h-full flex items-center justify-center bg-[#f8fafc]">
       <div className="bg-white rounded-xl px-16 py-10 text-center min-w-[55%] border border-[#e5e7eb]" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
         <div className="text-[11px] text-[#9ca3af] tracking-widest mb-2">{eyebrow}</div>
-        <h2 className="text-[32px] font-light text-[#111827] mb-3">{title}</h2>
+        <h2 className="text-[32px] font-semibold text-[#111827] mb-3">{title}</h2>
         {subtitle && <p className="text-[16px] text-[#6b7280]">{subtitle}</p>}
       </div>
       <Footer n={slideNumber} label={footerLabel} />
@@ -115,8 +115,8 @@ export function TitleSlide({
           {eyebrow && (
             <div className="text-[11px] text-[#9ca3af] uppercase tracking-widest">{eyebrow}</div>
           )}
-          <h1 className="text-[38px] font-light text-[#111827] leading-tight">{title}</h1>
-          {subtitle && <div className="text-[14px] text-[#6b7280] font-light">{subtitle}</div>}
+          <h1 className="text-[38px] font-semibold text-[#111827] leading-tight">{title}</h1>
+          {subtitle && <div className="text-[14px] text-[#6b7280] font-medium">{subtitle}</div>}
         </div>
 
         {(speakerPhoto || speakerName || speakerRole || speakerLinks) && (
